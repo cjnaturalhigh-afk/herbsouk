@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Herb Souk™ — First Medicine in Your Pocket</title>
+<meta name="description" content="100 healing herbs from your supermarket. TCM First Medicine. AI translation 12 languages. By Charles John BSc (Hons) Acupuncture.">
+<meta name="hs-version" content="10.4.1">
+<meta name="theme-color" content="#c9943a">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-180x180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0600;--bg2:#140d00;--bg3:#1e1400;
+  --gold:#c9943a;--goldl:#e8c06a;--goldd:#9a6e22;
+  --green:#2d5a3d;--greenl:#4a8c5c;
+  --cream:#f5ead6;--txt:#f0e6d3;--muted:#9a8060;
+  --border:rgba(201,148,58,0.2);--border2:rgba(201,148,58,0.4);
+  --warm:rgba(201,148,58,0.08)
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:"Nunito",sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;background:rgba(10,6,0,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:"Playfair Display",serif;font-size:1.35rem;color:var(--gold);text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:1.8rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--goldl)}
+.nav-cta{background:var(--gold);color:#0a0600;padding:.48rem 1.3rem;border-radius:25px;font-weight:700;font-size:.8rem;text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:var(--goldl);transform:translateY(-1px)}
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 1.5rem 5rem;background:radial-gradient(ellipse at 50% 0%,#2d1800,#0a0600);position:relative;overflow:hidden}
+.hero-orn{font-size:1.1rem;color:var(--gold);letter-spacing:.5em;opacity:.7;margin-bottom:1.4rem}
+.hero-title{font-family:"Playfair Display",serif;font-size:clamp(2.8rem,8vw,5.5rem);color:var(--cream);line-height:1.05;margin-bottom:.5rem}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-family:"Cormorant Garamond",serif;font-size:clamp(1rem,3vw,1.6rem);color:var(--goldl);font-style:italic;margin-bottom:1.8rem}
+.hero-desc{max-width:560px;font-size:1rem;color:var(--muted);line-height:1.8;margin:0 auto 2.5rem}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3.5rem}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--goldd));color:#0a0600;padding:.95rem 2.3rem;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .3s;box-shadow:0 4px 28px rgba(201,148,58,.35)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 38px rgba(201,148,58,.5)}
+.btn-secondary{border:1.5px solid var(--border2);color:var(--goldl);padding:.95rem 2.3rem;border-radius:50px;font-weight:600;font-size:.95rem;text-decoration:none;transition:all .3s}
+.btn-secondary:hover{background:rgba(201,148,58,.1);transform:translateY(-2px)}
+.stats{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-n{font-family:"Playfair Display",serif;font-size:2.2rem;color:var(--gold);font-weight:700;line-height:1}
+.stat-l{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem}
+/* SECTIONS */
+section{padding:5rem 1.5rem}
+.inner{max-width:1050px;margin:0 auto}
+.sec-tag{font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);font-weight:700;margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.sec-tag::before{content:"";display:block;width:22px;height:1px;background:var(--gold)}
+.sec-title{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,5vw,3rem);color:var(--cream);line-height:1.15;margin-bottom:1rem}
+.sec-title em{font-style:italic;color:var(--gold)}
+.sec-body{font-size:1rem;color:var(--muted);line-height:1.82;max-width:580px}
+.gold-rule{height:1px;background:linear-gradient(to right,transparent,var(--border2),transparent);margin:0}
+/* HERB GRID */
+#herbs{background:var(--bg2)}
+.herb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:2.5rem}
+.hb-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .25s;cursor:pointer;text-decoration:none}
+.hb-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 35px rgba(201,148,58,.2)}
+.hb-card img{width:100%;height:130px;object-fit:cover;display:block;background:var(--bg3)}
+.hb-body{padding:.6rem .75rem .8rem}
+.hb-en{font-family:"Playfair Display",serif;font-size:.9rem;color:var(--cream);font-weight:600;margin-bottom:2px}
+.hb-cn{font-size:.72rem;color:var(--gold)}
+.hb-cat{font-size:.65rem;color:var(--muted);margin-top:2px}
+.herb-cta{text-align:center;margin-top:2rem}
+/* PHILOSOPHY */
+#philosophy{background:linear-gradient(180deg,var(--bg),var(--bg2))}
+.phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+.phil-quote{position:relative;padding:2.2rem;border:1px solid var(--border);border-radius:2px;background:var(--warm)}
+.phil-quote::before{content:"\201C";font-family:"Playfair Display",serif;font-size:7rem;color:var(--gold);opacity:.15;position:absolute;top:-1rem;left:1rem;line-height:1}
+blockquote{font-family:"Cormorant Garamond",serif;font-size:1.25rem;line-height:1.75;color:var(--cream);font-style:italic}
+cite{display:block;margin-top:1rem;font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;font-style:normal}
+.phil-points{display:flex;flex-direction:column;gap:1.3rem}
+.pp{display:flex;gap:.9rem;align-items:flex-start}
+.pp-icon{width:40px;height:40px;flex-shrink:0;background:rgba(201,148,58,.1);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.pp h4{font-family:"Playfair Display",serif;font-size:.95rem;color:var(--cream);margin-bottom:.3rem}
+.pp p{font-size:.84rem;color:var(--muted);line-height:1.7}
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:2.5rem}
+.feat{background:var(--warm);border:1px solid var(--border);border-radius:14px;padding:1.6rem;transition:all .3s}
+.feat:hover{background:rgba(201,148,58,.1);border-color:var(--border2);transform:translateY(-3px)}
+.feat-icon{font-size:1.8rem;margin-bottom:.9rem}
+.feat-title{font-family:"Playfair Display",serif;font-size:1rem;color:var(--cream);margin-bottom:.5rem}
+.feat-desc{font-size:.85rem;color:var(--muted);line-height:1.7}
+/* ABOUT */
+#about{background:var(--bg3)}
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:center}
+.herb-portrait{width:100%;aspect-ratio:3/4;border-radius:4px;overflow:hidden;border:1px solid var(--border2);position:relative}
+.herb-portrait img{width:100%;height:100%;object-fit:cover}
+.years-badge{position:absolute;bottom:-1rem;right:-1rem;background:var(--bg);border:1px solid var(--border2);padding:.7rem 1rem;border-radius:8px;text-align:center}
+.years-n{font-family:"Playfair Display",serif;font-size:1.9rem;color:var(--gold);line-height:1}
+.years-l{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.quals{display:flex;flex-wrap:wrap;gap:.45rem;margin:1.2rem 0}
+.qual{background:rgba(201,148,58,.1);border:1px solid var(--border);padding:.3rem .8rem;border-radius:20px;font-size:.72rem;color:var(--goldl);font-weight:700}
+.about-bio{font-family:"Cormorant Garamond",serif;font-size:1.1rem;color:var(--cream);line-height:1.8;font-style:italic;margin-bottom:1.3rem}
+.about-pts{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.about-pts li{display:flex;align-items:flex-start;gap:.5rem;font-size:.87rem;color:var(--muted);line-height:1.6}
+.about-pts li::before{content:"✦";color:var(--gold);font-size:.58rem;margin-top:.3rem;flex-shrink:0}
+/* PRICING */
+#pricing{background:linear-gradient(180deg,var(--bg3),var(--bg))}
+.price-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;max-width:900px;margin:2.5rem auto 0}
+.price-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:2rem 1.6rem;text-align:center;position:relative;transition:all .3s}
+.price-card.featured{border:2px solid var(--gold);background:linear-gradient(135deg,#1e1400,#2d1a08);transform:translateY(-8px);box-shadow:0 20px 55px rgba(201,148,58,.2)}
+.feat-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#0a0600;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:3px 14px;border-radius:20px}
+.price-card h3{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--cream);margin-bottom:.4rem}
+.price-amt{font-family:"Playfair Display",serif;font-size:2.5rem;color:var(--gold);font-weight:700;line-height:1;margin:.9rem 0 .25rem}
+.price-period{font-size:.75rem;color:var(--muted);margin-bottom:1.2rem}
+.price-feats{list-style:none;text-align:left;margin-bottom:1.8rem;display:flex;flex-direction:column;gap:.55rem}
+.price-feats li{font-size:.83rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem;line-height:1.5}
+.price-feats li::before{content:"✦";color:var(--greenl);font-size:.55rem;margin-top:.28rem;flex-shrink:0}
+.price-btn{display:block;width:100%;padding:.8rem;border-radius:8px;font-weight:700;font-size:.88rem;text-decoration:none;transition:all .2s;text-align:center;border:none;font-family:"Nunito",sans-serif;cursor:pointer}
+.pbg{background:var(--gold);color:#0a0600}.pbg:hover{background:var(--goldl)}
+.pbo{background:transparent;color:var(--goldl);border:1px solid var(--border2)}.pbo:hover{background:rgba(201,148,58,.1)}
+.herbal-note{background:rgba(139,69,19,.12);border:1px solid rgba(201,148,58,.25);border-radius:10px;padding:.85rem 1rem;margin-top:1.5rem;max-width:900px;margin-left:auto;margin-right:auto;font-size:.82rem;color:var(--goldl);line-height:1.7;text-align:center}
+/* CONTACT */
+#contact{background:radial-gradient(ellipse at 50% 50%,#2d1800,#0a0600);padding:7rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+.ring{position:absolute;border:1px solid var(--border);border-radius:50%;pointer-events:none}
+.r1{width:380px;height:380px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.3}
+.r2{width:620px;height:620px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.15}
+.r3{width:860px;height:860px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.08}
+.contact-inner{position:relative;z-index:1;max-width:660px;margin:0 auto}
+.ct-title{font-family:"Playfair Display",serif;font-size:clamp(2rem,6vw,3.8rem);color:var(--cream);line-height:1.1;margin-bottom:1.3rem}
+.ct-title em{font-style:italic;color:var(--gold)}
+.ct-sub{font-size:1rem;color:var(--muted);line-height:1.78;margin-bottom:2.5rem}
+.contact-methods{display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem}@media(min-width:600px){.contact-methods{flex-direction:row;gap:1.3rem}}
+.cm{background:rgba(201,148,58,.06);border:1px solid var(--border2);border-radius:12px;padding:1.6rem;text-decoration:none;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:.7rem;text-align:center}
+.cm:hover{background:rgba(201,148,58,.12);transform:translateY(-3px);border-color:var(--gold)}
+.cm-icon{font-size:1.8rem}
+.cm-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700}
+.cm-val{font-family:"Playfair Display",serif;font-size:.95rem;color:var(--cream)}
+.cm-sub{font-size:.74rem;color:var(--muted)}
+.free-pill{background:rgba(45,90,61,.5);border:1px solid var(--greenl);color:#7ecfa0;font-size:.65rem;padding:2px 8px;border-radius:10px;font-weight:700}
+.contact-note{font-family:"Cormorant Garamond",serif;font-size:.95rem;font-style:italic;color:var(--muted);line-height:1.7;border-top:1px solid var(--border);padding-top:1.8rem;margin-top:1.8rem}
+/* FOOTER */
+footer{background:#050300;border-top:1px solid var(--border);padding:2.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.3rem}
+.footer-logo{font-family:"Playfair Display",serif;font-size:1.15rem;color:var(--gold)}
+.footer-copy{font-size:.74rem;color:var(--muted)}
+.footer-links{display:flex;gap:1.3rem}
+.footer-links a{font-size:.74rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--goldl)}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:.9rem 1.2rem}.nav-links{display:none}
+  .phil-grid,.about-grid{grid-template-columns:1fr;gap:2.2rem}
+  .feat-grid,.price-cards{grid-template-columns:1fr 1fr}
+  .price-card.featured{transform:none}
+  .herb-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  section{padding:3.5rem 1.2rem}
+  .feat-grid,.price-cards{grid-template-columns:1fr}
+  .herb-grid{grid-template-columns:repeat(2,1fr)}
+  footer{flex-direction:column;text-align:center}
+}
+
+/* ── STAT MODALS ── */
+.stat{cursor:pointer;transition:all .2s}
+.stat:hover{transform:translateY(-3px);opacity:.85}
+.stat-modal-overlay{display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.85);z-index:9000;
+  align-items:center;justify-content:center;padding:1rem}
+.stat-modal-overlay.open{display:flex}
+.stat-modal{background:#1c1205;border:1px solid rgba(201,148,58,.35);
+  border-radius:16px;max-width:600px;width:100%;
+  max-height:85vh;overflow-y:auto;padding:1.5rem;
+  position:relative;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.stat-modal-close{position:absolute;top:1rem;right:1rem;
+  background:rgba(201,148,58,.15);border:1px solid rgba(201,148,58,.3);
+  color:#c9943a;width:32px;height:32px;border-radius:50%;
+  cursor:pointer;font-size:1.1rem;display:flex;
+  align-items:center;justify-content:center}
+.stat-modal h2{font-family:"Playfair Display",serif;
+  font-size:1.5rem;color:#c9943a;margin-bottom:.75rem;
+  padding-right:2.5rem}
+.stat-modal p{font-size:.9rem;color:#9a8060;line-height:1.8;
+  margin-bottom:.75rem}
+.stat-modal ul{padding-left:1.2rem;margin-bottom:.75rem}
+.stat-modal li{font-size:.88rem;color:#9a8060;line-height:1.8;
+  margin-bottom:.3rem}
+.stat-modal li strong{color:#f5ead6}
+.stat-modal .gold-line{color:#c9943a;font-family:"Playfair Display",serif;
+  font-style:italic;font-size:1rem;margin:.75rem 0;
+  border-left:3px solid #c9943a;padding-left:.75rem}
+
+</style>
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://herbsouk.co.uk/">
+  <meta property="og:title" content="The Herb Souk™ — First Medicine in Your Pocket">
+  <meta property="og:description" content="100 healing herbs from your supermarket. TCM First Medicine meets Western science. AI translation in 12 languages. By Charles John BSc (Hons) Acupuncture.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=1200&q=80&fit=crop&auto=format">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Herb Souk™ — First Medicine in Your Pocket">
+  <meta name="twitter:description" content="100 herbs · 12 languages · TCM + Western science · £4.99">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=1200&q=80&fit=crop&auto=format">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">🌿 The Herb Souk™</a>
+  <div class="nav-links">
+    <a href="#philosophy">Philosophy</a>
+    <a href="/app.html">100 Herbs</a>
+    <a href="#about">About</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Consult</a>
+  </div>
+  <a href="#" data-page="consult" class="nav-cta">Free 15-min Assessment</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-orn">✦ ☽ ✦</div>
+  <h1 class="hero-title">First Medicine™<br><em>in your pocket</em></h1>
+  <p class="hero-sub">100 healing herbs · Your supermarket · 6,000 years of wisdom</p>
+  <p class="hero-desc">Every time you walk through the herb aisle you pass <strong style="color:var(--goldl)">nature's ancient pharmacy</strong>. The Herb Souk™ reveals what 6,000 years of clinical wisdom — and modern science — knows about each one. AI-translated into 12 languages.</p>
+  <div class="hero-btns">
+    <a href="#" data-page="app" class="btn-primary">Try Free · Unlock £4.99</a>
+    <a href="#" data-page="consult" class="btn-secondary">Free 15-min Assessment</a>
+  </div>
+  <div class="stats">
+    <div class="stat" onclick="openModal('herbs')" title="View all 100 herbs">
+      <div class="stat-n">100</div><div class="stat-l">Healing herbs</div>
+    </div>
+    <div class="stat" onclick="openModal('languages')" title="View all 12 languages">
+      <div class="stat-n">12</div><div class="stat-l">Languages</div>
+    </div>
+    <div class="stat" onclick="openModal('years')" title="About First Medicine">
+      <div class="stat-n">6,000</div><div class="stat-l">Years of wisdom</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">26</div><div class="stat-l">Years clinical practice</div>
+    </div>
+  </div>
+</section>
+
+<!-- HERBS PREVIEW -->
+<section id="herbs">
+  <div class="inner">
+    <div class="reveal">
+      <div class="sec-tag">The Herbs</div>
+      <h2 class="sec-title">100 herbs.<br><em>Dual perspectives.</em></h2>
+      <p class="sec-body">Every herb presented through the TCM First Medicine lens and Western clinical science simultaneously. Chinese name, pinyin, organ systems, active compounds, and commercial applications. Tap any herb to explore its full profile.</p>
+    </div>
+    <div class="herb-grid reveal" id="herb-grid">
+      <a href="#" onclick="showPage('app');return false" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous"
+             src="https://images.unsplash.com/photo-1741517802684-ba07c444a5d2?w=400&q=80&fit=crop&auto=format"
+             alt="Ginger" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="hb-body">
+          <div class="hb-en">Ginger</div>
+          <div class="hb-cn">干姜</div>
+          <div class="hb-cat">Warming</div>
+        </div>
+      </a>
+      <a href="#" onclick="showPage('app');return false" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous"
+             src="https://images.unsplash.com/photo-1741513599050-487ccfb86275?w=400&q=80&fit=crop&auto=format"
+             alt="Turmeric" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="hb-body">
+          <div class="hb-en">Turmeric</div>
+          <div class="hb-cn">姜黄</div>
+          <div class="hb-cat">Warming</div>
+        </div>
+      </a>
+      <a href="#" onclick="showPage('app');return false" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous"
+             src="https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=400&q=80&fit=crop&auto=format"
+             alt="Fresh Mint" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="hb-body">
+          <div class="hb-en">Fresh Mint</div>
+          <div class="hb-cn">薄荷</div>
+          <div class="hb-cat">Cooling</div>
+        </div>
+      </a>
+      <a href="#" onclick="showPage('app');return false" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous"
+             src="https://images.unsplash.com/photo-1587049332298-1c42e83937a7?w=400&q=80&fit=crop&auto=format"
+             alt="Garlic" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="hb-body">
+          <div class="hb-en">Garlic</div>
+          <div class="hb-cn">大蒜</div>
+          <div class="hb-cat">Immune</div>
+        </div>
+      </a>
+      <a href="#" onclick="showPage('app');return false" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous"
+             src="https://images.unsplash.com/photo-1721927248017-3ec109124e72?w=400&q=80&fit=crop&auto=format"
+             alt="Cinnamon" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="hb-body">
+          <div class="hb-en">Cinnamon</div>
+          <div class="hb-cn">肉桂</div>
+          <div class="hb-cat">Warming</div>
+        </div>
+      </a>
+      <a href="#" onclick="showPage('app');return false" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous"
+             src="https://images.unsplash.com/photo-1719264493104-62c8f920e6b8?w=400&q=80&fit=crop&auto=format"
+             alt="Lavender" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="hb-body">
+          <div class="hb-en">Lavender</div>
+          <div class="hb-cn">薰衣草</div>
+          <div class="hb-cat">Cooling</div>
+        </div>
+      </a>
+      <a href="#" onclick="showPage('app');return false" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous"
+             src="https://images.unsplash.com/photo-1695798790639-c3c4294373ab?w=400&q=80&fit=crop&auto=format"
+             alt="Ginseng" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="hb-body">
+          <div class="hb-en">Ginseng</div>
+          <div class="hb-cn">人参</div>
+          <div class="hb-cat">Tonic</div>
+        </div>
+      </a>
+      <a href="#" onclick="showPage('app');return false" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous"
+             src="https://images.unsplash.com/photo-1631189945107-34e33ff1c648?w=400&q=80&fit=crop&auto=format"
+             alt="Saffron" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="hb-body">
+          <div class="hb-en">Saffron</div>
+          <div class="hb-cn">藏红花</div>
+          <div class="hb-cat">Neutral</div>
+        </div>
+      </a>
+    </div>
+          <div class="hb-cn">干姜</div>
+          <div class="hb-cat">Warming</div>
+        </div>
+      </a>
+      <a href="#" data-page="app" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1741513599050-487ccfb86275?w=400&q=80&fit=crop&auto=format" alt="Turmeric" loading="lazy">
+        <div class="hb-body">
+          <div class="hb-en">Turmeric</div>
+          <div class="hb-cn">姜黄</div>
+          <div class="hb-cat">Warming</div>
+        </div>
+      </a>
+      <a href="#" data-page="app" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=400&q=80&fit=crop&auto=format" alt="Fresh Mint" loading="lazy">
+        <div class="hb-body">
+          <div class="hb-en">Fresh Mint</div>
+          <div class="hb-cn">薄荷</div>
+          <div class="hb-cat">Cooling</div>
+        </div>
+      </a>
+      <a href="#" data-page="app" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1587049332298-1c42e83937a7?w=400&q=80&fit=crop&auto=format" alt="Garlic" loading="lazy">
+        <div class="hb-body">
+          <div class="hb-en">Garlic</div>
+          <div class="hb-cn">大蒜</div>
+          <div class="hb-cat">Immune</div>
+        </div>
+      </a>
+      <a href="#" data-page="app" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1721927248017-3ec109124e72?w=400&q=80&fit=crop&auto=format" alt="Cinnamon" loading="lazy">
+        <div class="hb-body">
+          <div class="hb-en">Cinnamon</div>
+          <div class="hb-cn">肉桂</div>
+          <div class="hb-cat">Warming</div>
+        </div>
+      </a>
+      <a href="#" data-page="app" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1719264493104-62c8f920e6b8?w=400&q=80&fit=crop&auto=format" alt="Lavender" loading="lazy">
+        <div class="hb-body">
+          <div class="hb-en">Lavender</div>
+          <div class="hb-cn">薰衣草</div>
+          <div class="hb-cat">Cooling</div>
+        </div>
+      </a>
+      <a href="#" data-page="app" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1695798790639-c3c4294373ab?w=400&q=80&fit=crop&auto=format" alt="Ginseng" loading="lazy">
+        <div class="hb-body">
+          <div class="hb-en">Ginseng</div>
+          <div class="hb-cn">人参</div>
+          <div class="hb-cat">Tonic</div>
+        </div>
+      </a>
+      <a href="#" data-page="app" class="hb-card">
+        <img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1631189945107-34e33ff1c648?w=400&q=80&fit=crop&auto=format" alt="Saffron" loading="lazy">
+        <div class="hb-body">
+          <div class="hb-en">Saffron</div>
+          <div class="hb-cn">藏红花</div>
+          <div class="hb-cat">Neutral</div>
+        </div>
+      </a>
+    </div>
+    <div class="herb-cta reveal">
+      <a href="#" data-page="app" class="btn-primary">Explore All 100 Herbs ↗</a>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="inner">
+    <div class="phil-grid reveal">
+      <div class="phil-quote">
+        <blockquote>"Traditional Chinese Medicine doesn't 'just' treat symptoms. TCM aims to treat both the root cause and the presenting symptoms — known as the ben and the biao. TCM enhances the body's natural intelligence for healing and recovery, whilst Western medicine focuses primarily on the symptoms."</blockquote>
+        <cite>— Charles John BSc (Hons) Acupuncture · Founder, The Herb Souk™</cite>
+      </div>
+      <div class="phil-points">
+        <div class="pp"><div class="pp-icon">☯</div><div><h4>Ben &amp; Biao — Root and Branch</h4><p>TCM addresses both the ben (root cause) and the biao (presenting symptoms). True healing requires treating the underlying pattern, not only what is visible on the surface.</p></div></div>
+        <div class="pp"><div class="pp-icon">🧠</div><div><h4>The Body's Natural Intelligence</h4><p>TCM works with the body's innate capacity for healing and recovery — enhancing, not overriding. Every herb, every needle works in alignment with the body's own processes.</p></div></div>
+        <div class="pp"><div class="pp-icon">🔬</div><div><h4>Validated by Modern Science</h4><p>Western research is now confirming what TCM practitioners have known for millennia — about ginger, turmeric, saffron, cinnamon, and hundreds more.</p></div></div>
+        <div class="pp"><div class="pp-icon">🛒</div><div><h4>Available for Pennies</h4><p>Fresh mint for £0.59. Ginger for £0.49. Turmeric for £0.89. The world's most powerful healing pharmacy is already in your supermarket.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- FEATURES -->
+<section id="features" style="background:linear-gradient(180deg,var(--bg2),var(--bg3))">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;max-width:540px;margin:0 auto 1rem">
+      <div class="sec-tag" style="justify-content:center">What You Get</div>
+      <h2 class="sec-title">Everything in <em>one app</em></h2>
+    </div>
+    <div class="feat-grid reveal">
+      <div class="feat"><div class="feat-icon">🌍</div><div class="feat-title">12 Languages — AI Translated</div><div class="feat-desc">Select your language at launch. All 100 herb profiles translated in real time by AI. TCM profiles, Western science, cautions — all in your language.</div></div>
+      <div class="feat"><div class="feat-icon">📸</div><div class="feat-title">100 Verified Photographs</div><div class="feat-desc">Every herb shown in full colour — your own professional photographs. Available from your local multicultural street markets and shops, your local supermarkets and online.</div></div>
+      <div class="feat"><div class="feat-icon">☯</div><div class="feat-title">TCM First Medicine View</div><div class="feat-desc">Full TCM profile — flavour, temperature, organ systems, classical indications refined over 6,000 years of clinical practice.</div></div>
+      <div class="feat"><div class="feat-icon">🔬</div><div class="feat-title">Western Science Evidence</div><div class="feat-desc">Active compounds, mechanisms of action, and clinical research for every herb. Understanding why each herb works.</div></div>
+      <div class="feat"><div class="feat-icon">⚗️</div><div class="feat-title">30 Common Complaint Formulas</div><div class="feat-desc">Herb combinations for anxiety, IBS, PCOS, fertility, menopause, joint pain, blood sugar and more. Step-by-step protocols from clinical practice.</div></div>
+      <div class="feat"><div class="feat-icon">🔒</div><div class="feat-title">Personal Licence — Non-Transferable</div><div class="feat-desc">Your £4.99 download is a personal licence for your use only. The Herb Souk™ is not transferable or shareable between users.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT CHARLES -->
+<section id="about">
+  <div class="inner">
+    <div class="about-grid reveal">
+      <div style="position:relative">
+        <div class="herb-portrait">
+          <img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1611071536226-6f7d9a7f14d4?w=400&q=80&fit=crop&auto=format" alt="Ginseng root — a premier TCM tonic herb" style="filter:sepia(20%) saturate(1.2)">
+        </div>
+        <div class="years-badge"><div class="years-n">26</div><div class="years-l">Years practice</div></div>
+      </div>
+      <div>
+        <div class="sec-tag">About Charles John</div>
+        <h2 class="sec-title">Charles John<br><em>BSc (Hons)</em></h2>
+        <p style="font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:1rem;letter-spacing:.04em">FOUNDER, THE HERB SOUK™</p>
+        <div class="quals">
+          <span class="qual">BSc (Hons) Acupuncture</span>
+          <span class="qual">PG Dip CHM</span>
+          <span class="qual">Dip CHM</span>
+          <span class="qual">University of Westminster</span>
+        </div>
+        <p class="about-bio">"I trained at the University of Westminster — one of the most intensive Chinese medicine programmes outside of China itself. For 26 years I have seen what First Medicine can do when it is applied with precision and clinical depth. The Herb Souk is my life's knowledge, placed in your hands."</p>
+        <ul class="about-pts">
+          <li>26 years clinical practice in acupuncture and Chinese herbal medicine</li>
+          <li>Specialist in fertility, PCOS, IVF support, recurrent miscarriage, and women's hormonal health</li>
+          <li>BSc (Hons), PG Dip and Dip in Chinese Herbal Medicine — University of Westminster</li>
+          <li>Building a UK-wide network of professional acupuncturists and herbalists</li>
+          <li>UK-wide consultations — remote and in-person home visits</li>
+          <li>Free 15-minute initial assessment available</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;max-width:500px;margin:0 auto 1rem">
+      <div class="sec-tag" style="justify-content:center">Pricing</div>
+      <h2 class="sec-title">Your <em>path</em> to First Medicine</h2>
+    </div>
+    <div class="price-cards reveal">
+
+      <div class="price-card">
+        <h3>The Herb Souk™ App</h3>
+        <div class="price-amt">£4.99</div>
+        <div class="price-period">one-off · personal licence · non-transferable</div>
+        <ul class="price-feats">
+          <li>100 herbs with full colour photographs</li>
+          <li>TCM + Western science dual profiles</li>
+          <li>AI translation into 12 languages</li>
+          <li>30 common complaint formulas</li>
+          <li>9 category filters + full search</li>
+          <li>Personal licence — not transferable</li>
+        </ul>
+        <a href="#" data-page="app" class="price-btn pbg">Try 8 Herbs Free</a>
+          <div style="font-size:.72rem;color:var(--muted);margin-top:.75rem;line-height:1.65;
+               background:rgba(201,148,58,.06);border-radius:8px;padding:.6rem .8rem">
+            To purchase full access: email 
+            <a href="mailto:hello@theherbsouk.co.uk?subject=HERB SOUK UNLOCK" 
+               style="color:var(--goldl)">hello@theherbsouk.co.uk</a><br>
+            Subject: <strong style="color:var(--goldl)">HERB SOUK UNLOCK</strong><br>
+            Charles replies within 24 hours with your personal unlock code.
+          </div>
+      </div>
+
+      <div class="price-card featured">
+        <div class="feat-badge">Start Here</div>
+        <h3>Free 15-Min Assessment</h3>
+        <div class="price-amt">FREE</div>
+        <div class="price-period">remote · video or phone · no obligation</div>
+        <ul class="price-feats">
+          <li>15-minute clinical assessment</li>
+          <li>Understand your TCM pattern</li>
+          <li>Treatment recommendation</li>
+          <li>No obligation to proceed</li>
+          <li>Initial consultation £75 if you continue</li>
+          <li>UK-wide by video or phone</li>
+        </ul>
+        <a href="#" data-page="consult" class="price-btn pbg">Book Free Assessment</a>
+      </div>
+
+      <div class="price-card">
+        <h3>Clinical Treatment</h3>
+        <div class="price-amt">£75+</div>
+        <div class="price-period">initial consultation · programmes available</div>
+        <ul class="price-feats">
+          <li>Initial consultation £75</li>
+          <li>Remote follow-up £95</li>
+          <li>Home acupuncture £150</li>
+          <li>Acupuncture + Herbal Review £195</li>
+          <li>IVF support — acupuncture &amp; or CHM — 12 sessions from £1,650 · ongoing assessment</li>
+          <li>PCOS — 12 sessions from £1,650 · ongoing assessment</li>
+        </ul>
+        <a href="#" data-page="consult" class="price-btn pbo">View All Fees</a>
+      </div>
+
+    </div>
+    <div class="herbal-note reveal">
+      ⚗️ <strong>Chinese Herbal Medicine Prescriptions</strong> — individually formulated, charged separately for each prescription, and dispatched by post. Not included in any consultation, review, or programme fee. Cost varies by formula and duration — your practitioner will advise before prescribing.
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+  <div class="contact-inner reveal">
+    <div class="hero-orn">✦ ☽ ✦</div>
+    <h2 class="ct-title">Ready for<br><em>First Medicine?</em></h2>
+    <p class="ct-sub">Begin with a free 15-minute assessment. Speak directly with Charles — 26 years of clinical wisdom, available to you. Or explore The Herb Souk™ and start discovering your supermarket pharmacy today.</p>
+    <div class="contact-methods">
+      <a href="mailto:consult@theherbsouk.co.uk?subject=Free Assessment — The Herb Souk&body=Hello Charles,%0A%0AI would like to book a free 15-minute assessment.%0A%0AName:%0AMain concern:%0APreferred time:%0A%0AThank you" class="cm">
+        <div class="cm-icon">✉️</div>
+        <div class="cm-label">Email Charles</div>
+        <div class="cm-val">hello@theherbsouk.co.uk</div>
+        <div class="cm-sub">Response within 24 hours · <span class="free-pill">Free 15-min assessment</span></div>
+      </a>
+      <a href="tel:07449643310" class="cm">
+        <div class="cm-icon">📞</div>
+        <div class="cm-label">Call or WhatsApp</div>
+        <div class="cm-val">07449 643310</div>
+        <div class="cm-sub">Mon–Fri · 9am–6pm UK time</div>
+      </a>
+    </div>
+    <a href="#" data-page="consult" class="btn-primary" style="display:inline-block;margin-bottom:2rem">Book Your Free 15-Minute Assessment</a>
+    <div class="contact-note">Free 15-minute assessment · Initial consultation £75 · UK-wide by video and phone · In-person home visits London &amp; Surrey · © 2026 Charles John · All rights reserved</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">🌿 The Herb Souk™</div>
+  <div class="footer-copy">© 2026 Charles John · All rights reserved · The Herb Souk™ · First Medicine™</div>
+  <div class="footer-links">
+    <a href="#" data-page="app">The App</a>
+    <a href="#" data-page="formulas">Formulas</a>
+    <a href="#" data-page="consult">Consult</a>
+    <a href="#" data-page="about">About</a>
+    <a href="#" data-page="qr">QR Code</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/tos.html">Terms</a>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("visible"); });
+},{threshold:0.1,rootMargin:"0px 0px -50px 0px"});
+document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+</script>
+
+<script>
+// Smart navigation — works in both preview and live deployment
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('[data-page]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      var page = el.getAttribute('data-page');
+      var pageMap = {
+        'app': '/app.html',
+        'consult': '/consult.html',
+        'formulas': '/formulas.html',
+        'about': '/about.html',
+        'qr': '/qr.html'
+      };
+      // If showPage exists (preview mode) use it, else navigate
+      if (typeof showPage === 'function') {
+        showPage(page);
+      } else if (typeof window._hsNav === 'function') {
+        window._hsNav(page);
+      } else {
+        window.location.href = pageMap[page] || '/';
+      }
+    });
+  });
+});
+</script>
+
+
+<!-- ══ 100 HERBS MODAL ══════════════════════════════════════ -->
+<div class="stat-modal-overlay" id="modal-herbs">
+  <div class="stat-modal">
+    <button class="stat-modal-close" onclick="closeModal('herbs')">✕</button>
+    <h2>🌿 100 Healing Herbs</h2>
+    <p class="gold-line">Every herb available from your local multicultural street 
+    markets and shops, your local supermarkets and online.</p>
+    <p>The Herb Souk™ contains 100 carefully selected healing herbs — each one 
+    profiled from both the Traditional Chinese Medicine perspective and Western 
+    clinical science. Every herb can be found in the UK without a prescription.</p>
+    <p><strong style="color:#f5ead6">The 8 categories:</strong></p>
+    <ul>
+      <li><strong>Tonic (22 herbs)</strong> — Ginseng, Astragalus, Dandelion, Hawthorn, Ginkgo, Moringa, Maca Root, He Shou Wu, Schisandra, Goji Berries and more</li>
+      <li><strong>Cooling (19 herbs)</strong> — Chamomile, Green Tea, Lavender, Valerian, Aloe Vera, Matcha, Lemon Balm, Passionflower, Hibiscus and more</li>
+      <li><strong>Digestive (17 herbs)</strong> — Fennel, Peppermint, Ginger, Cardamom, Papaya, Pineapple, Bay Leaf, Dill, Basil and more</li>
+      <li><strong>Neutral (13 herbs)</strong> — Sesame Seeds, Flaxseed, Chia Seeds, Cacao, Saffron, Avocado, Coconut, Manuka Honey and more</li>
+      <li><strong>Immune (11 herbs)</strong> — Garlic, Echinacea, Elderberry, Rosehip, Reishi, Chaga, Turkey Tail, Shiitake and more</li>
+      <li><strong>Warming (8 herbs)</strong> — Cinnamon, Cloves, Cayenne, Chilli, Walnuts, Onion, Turmeric Root and more</li>
+      <li><strong>Women's (6 herbs)</strong> — Sage, Fenugreek, Dong Quai, Red Clover, Black Cohosh, Soy</li>
+      <li><strong>Respiratory (4 herbs)</strong> — Thyme, Rosemary, Elderflower, Horseradish</li>
+    </ul>
+    <p>Each herb profile includes: TCM pattern and organ system, Western science 
+    evidence, commercial applications, cautions, flavour and temperature in TCM, 
+    and a full AI translation in your chosen language.</p>
+    <div style="text-align:center;margin-top:1.2rem">
+      <button onclick="closeModal('herbs');goToApp()"
+        style="background:#c9943a;color:#0f0900;border:none;
+        border-radius:25px;padding:.75rem 2rem;font-size:.9rem;
+        font-weight:700;cursor:pointer;font-family:Nunito,sans-serif">
+        Explore All 100 Herbs →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 12 LANGUAGES MODAL ════════════════════════════════════ -->
+<div class="stat-modal-overlay" id="modal-languages">
+  <div class="stat-modal">
+    <button class="stat-modal-close" onclick="closeModal('languages')">✕</button>
+    <h2>🌍 12 Languages</h2>
+    <p class="gold-line">First Medicine™ for the whole world — in your language.</p>
+    <p>The Herb Souk™ is fully available in 12 languages, with AI-powered 
+    translation delivering complete herb profiles in each. More languages 
+    will be added as the community grows.</p>
+    <ul>
+      <li><strong>🇬🇧 English</strong> — Primary language · All content</li>
+      <li><strong>🇫🇷 French</strong> — Français · Traduction IA complète</li>
+      <li><strong>🇪🇸 Spanish</strong> — Español · Traducción IA completa</li>
+      <li><strong>🇩🇪 German</strong> — Deutsch · Vollständige KI-Übersetzung</li>
+      <li><strong>🇨🇳 Chinese (Simplified)</strong> — 中文 · 人工智能翻译</li>
+      <li><strong>🇸🇦 Arabic</strong> — العربية · ترجمة ذكاء اصطناعي كاملة</li>
+      <li><strong>🇧🇷 Portuguese</strong> — Português · Tradução IA completa</li>
+      <li><strong>🇯🇵 Japanese</strong> — 日本語 · AI完全翻訳</li>
+      <li><strong>🇮🇳 Hindi</strong> — हिंदी · पूर्ण AI अनुवाद</li>
+      <li><strong>🌍 Swahili</strong> — Kiswahili · Tafsiri kamili ya AI</li>
+      <li><strong>🇮🇹 Italian</strong> — Italiano · Traduzione IA completa</li>
+      <li><strong>🇷🇺 Russian</strong> — Русский · Полный перевод ИИ</li>
+    </ul>
+    <p style="font-size:.8rem;color:#9a8060;font-style:italic;margin-top:.5rem">
+      AI translation powered by Claude. Herb names displayed in both English 
+      and Chinese characters throughout. Translation requires an internet connection.
+    </p>
+  </div>
+</div>
+
+<!-- ══ 6,000 YEARS MODAL ══════════════════════════════════════ -->
+<div class="stat-modal-overlay" id="modal-years">
+  <div class="stat-modal">
+    <button class="stat-modal-close" onclick="closeModal('years')">✕</button>
+    <h2>☯ 6,000 Years of First Medicine™</h2>
+    <p class="gold-line">"The superior physician treats disease before it occurs. 
+    The inferior physician treats disease after it has occurred."<br>
+    — Huangdi Neijing (Yellow Emperor's Classic), circa 2600 BCE</p>
+    <p>Traditional Chinese Medicine is the world's oldest continuously practised 
+    medical system. For over 6,000 years — long before the first hospital, the 
+    first pharmacy, or the first clinical trial — healers were cataloguing the 
+    therapeutic properties of plants and developing a complete system of medicine 
+    based on careful observation of the human body.</p>
+    <p><strong style="color:#f5ead6">The foundations of TCM:</strong></p>
+    <ul>
+      <li><strong>Qi (氣)</strong> — The vital energy that flows through meridian 
+      channels in the body. When Qi flows freely, health is maintained. When it 
+      stagnates or becomes deficient, illness follows.</li>
+      <li><strong>Yin and Yang (陰陽)</strong> — The two complementary forces that 
+      govern all phenomena. Health is dynamic balance. Illness is imbalance.</li>
+      <li><strong>The Five Elements (五行)</strong> — Wood, Fire, Earth, Metal, Water. 
+      Each governs organ systems, emotions, seasons, and tastes. TCM reads the body 
+      as an interconnected whole.</li>
+      <li><strong>Ben and Biao (本標)</strong> — The root cause (ben) and the 
+      presenting symptoms (biao). TCM treats both simultaneously. Western medicine 
+      typically treats the biao alone.</li>
+      <li><strong>The Organ Systems</strong> — TCM identifies 12 primary organ 
+      systems, each with physical, mental, and emotional dimensions far beyond 
+      their Western anatomical equivalents.</li>
+    </ul>
+    <p><strong style="color:#f5ead6">The Shen Nong Ben Cao Jing</strong> — the 
+    Divine Farmer's Materia Medica, written around 2700 BCE — catalogued 365 
+    medicinal herbs. This text forms the foundation of Chinese herbal medicine 
+    that is still practiced clinically today.</p>
+    <p>Modern science is now validating what TCM knew for millennia. Saffron 
+    comparable to antidepressants. Lavender comparable to benzodiazepines. 
+    Turmeric inhibiting the same inflammatory pathways as ibuprofen. Ginseng 
+    activating adaptogenic responses now understood at the molecular level.</p>
+    <p>This is not alternative medicine.<br>
+    <strong style="color:#c9943a">This is First Medicine™.</strong></p>
+  </div>
+</div>
+
+
+<script>
+function openModal(id) {
+  document.getElementById('modal-' + id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById('modal-' + id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+function goToApp() {
+  window.location.href = '/app.html';
+}
+// Close on overlay click
+document.querySelectorAll('.stat-modal-overlay').forEach(function(el) {
+  el.addEventListener('click', function(e) {
+    if (e.target === el) {
+      el.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
