@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>30 Common Complaints — The Herb Souk™</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0900;--bg2:#1c1205;--bg3:#261808;
+  --gold:#c9943a;--goldl:#e8c06a;--goldd:#8a6520;
+  --cream:#f5ead6;--txt:#f0e6d3;--muted:#9a8060;
+  --border:rgba(201,148,58,.2);--border2:rgba(201,148,58,.4);
+  --green:#2d5a3d;--greenl:#4a8c5c;
+  --red:#c0392b;--amber:#d68910;
+}
+body{background:var(--bg);color:var(--txt);font-family:Nunito,sans-serif;
+  padding-bottom:70px}
+
+/* TOPBAR */
+.topbar{background:linear-gradient(135deg,#0c0700,#1a1000);
+  border-bottom:1px solid var(--border);
+  padding:.75rem 1rem;
+  display:flex;align-items:center;gap:.75rem;
+  position:sticky;top:0;z-index:100}
+.tb-back{background:rgba(201,148,58,.12);border:1px solid var(--border2);
+  color:var(--gold);width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1rem;text-decoration:none;flex-shrink:0}
+.tb-title{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--gold)}
+
+/* INTRO */
+.intro{padding:1rem 1rem .5rem;
+  border-bottom:1px solid var(--border)}
+.intro h2{font-family:"Playfair Display",serif;font-size:1.3rem;
+  color:var(--cream);margin-bottom:.35rem}
+.intro p{font-size:.82rem;color:var(--muted);line-height:1.65}
+
+/* SEARCH + CATS */
+.controls{padding:.75rem 1rem;
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:52px;z-index:99}
+.fsearch{width:100%;background:#0c0700;border:1px solid var(--border);
+  border-radius:8px;padding:.55rem .85rem;color:var(--txt);
+  font-family:Nunito,sans-serif;font-size:.88rem;outline:none;
+  margin-bottom:.6rem}
+.fsearch::placeholder{color:var(--muted)}
+.fsearch:focus{border-color:var(--gold)}
+.cats{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.cats::-webkit-scrollbar{display:none}
+.cat-btn{background:rgba(201,148,58,.08);border:1px solid var(--border);
+  color:var(--muted);border-radius:20px;padding:4px 12px;
+  font-size:.75rem;font-weight:600;cursor:pointer;white-space:nowrap;
+  transition:all .15s;font-family:Nunito,sans-serif}
+.cat-btn.on{background:var(--gold);color:#0f0900;border-color:var(--gold)}
+
+/* FORMULA LIST */
+.flist{padding:.75rem 1rem;display:flex;flex-direction:column;gap:8px}
+.no-res{text-align:center;color:var(--muted);padding:2rem;font-size:.88rem}
+
+/* FORMULA CARD */
+.fcard{background:var(--bg2);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;transition:border-color .2s}
+.fcard.open{border-color:var(--border2)}
+.fcard-head{display:flex;align-items:center;gap:.75rem;
+  padding:.85rem 1rem;cursor:pointer}
+.fcard-head:active{background:rgba(201,148,58,.05)}
+.fcard-icon{font-size:1.5rem;flex-shrink:0}
+.fcard-info{flex:1;min-width:0}
+.fcard-name{font-family:"Playfair Display",serif;font-size:.95rem;
+  color:var(--cream);margin-bottom:2px}
+.fcard-tcm-brief{font-size:.72rem;color:var(--gold);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fcard-arrow{color:var(--muted);font-size:.8rem;transition:transform .2s;flex-shrink:0}
+.fcard.open .fcard-arrow{transform:rotate(180deg)}
+
+/* EXPANDED BODY */
+.fcard-body{display:none;padding:0 1rem 1rem;
+  border-top:1px solid var(--border)}
+.fcard.open .fcard-body{display:block}
+
+/* SECTIONS */
+.fs{margin-top:.85rem}
+.fs-label{font-size:.68rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--gold);margin-bottom:.4rem;
+  display:flex;align-items:center;gap:.35rem}
+.fs-label::before{content:"";display:block;width:14px;height:1px;background:var(--gold)}
+.fs-body{font-size:.85rem;color:var(--txt);line-height:1.72}
+.fs-body-muted{font-size:.85rem;color:var(--muted);line-height:1.72}
+
+/* HERB PILLS */
+.herb-pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:.4rem}
+.herb-pill{background:rgba(201,148,58,.1);border:1px solid var(--border2);
+  color:var(--goldl);border-radius:20px;padding:3px 10px;
+  font-size:.75rem;font-weight:600}
+
+/* DOSAGE TABLE */
+.dosage-table{width:100%;margin-top:.4rem;border-collapse:collapse}
+.dosage-table td{padding:4px 8px;font-size:.8rem;
+  border-bottom:1px solid rgba(201,148,58,.08)}
+.dosage-table td:first-child{color:var(--gold);font-weight:600;width:45%}
+.dosage-table td:last-child{color:var(--muted)}
+
+/* CAUTION */
+.caution-box{background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.2);
+  border-radius:8px;padding:.6rem .8rem;margin-top:.75rem}
+.caution-label{font-size:.68rem;font-weight:700;color:var(--red);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem}
+.caution-text{font-size:.8rem;color:#e87c7c;line-height:1.6}
+
+/* CONSULT CTA */
+.consult-cta{background:linear-gradient(135deg,#1a1000,#2a1a08);
+  border:1px solid var(--border2);border-radius:10px;
+  padding:.75rem 1rem;margin-top:.85rem;text-align:center}
+.consult-cta-text{font-size:.78rem;color:var(--muted);margin-bottom:.5rem;line-height:1.5}
+.consult-cta-btn{display:inline-block;background:var(--gold);color:#0f0900;
+  border-radius:20px;padding:.45rem 1.2rem;font-size:.8rem;
+  font-weight:700;text-decoration:none;font-family:Nunito,sans-serif}
+
+/* DISCLAIMER */
+.disclaimer{background:rgba(201,148,58,.05);border:1px solid var(--border);
+  border-radius:10px;padding:.75rem 1rem;margin:.75rem 1rem 0;
+  font-size:.75rem;color:var(--muted);line-height:1.65;text-align:center}
+
+/* BOTTOM NAV (same as app) */
+.bnav{position:fixed;bottom:0;left:0;right:0;
+  background:rgba(8,4,0,.97);border-top:2px solid rgba(201,148,58,.4);
+  display:flex;height:56px;z-index:200}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;cursor:pointer;gap:2px;
+  color:var(--muted);font-size:.6rem;text-decoration:none;
+  transition:color .15s}
+.ni.active,.ni:hover{color:var(--gold)}
+.ni-i{font-size:1.2rem}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="/app.html" class="tb-back">←</a>
+  <div class="tb-title">⚗️ 30 Common Complaint Formulas</div>
+</div>
+
+<div class="intro">
+  <h2>First Medicine™ Formulas</h2>
+  <p>Each formula is explained from a Traditional Chinese Medicine perspective first — the root pattern, the organ systems involved, and the clinical principle. Western science context follows. All herbs are available from your supermarket or health food shop.</p>
+</div>
+
+<div class="disclaimer">
+  <strong style="color:var(--goldl)">Educational reference only.</strong>
+  Not medical advice. These formulas are for informational purposes.
+  Always consult a qualified healthcare professional before use,
+  especially if pregnant, breastfeeding, or on medication.
+</div>
+
+<div class="controls">
+  <input class="fsearch" id="fsearch" type="search" 
+    placeholder="Search conditions or herbs..." 
+    oninput="renderFormulas()">
+  <div class="cats" id="fcats"></div>
+</div>
+
+<div class="flist" id="flist"></div>
+
+<nav class="bnav">
+  <a href="/app.html" class="ni"><div class="ni-i">🌿</div>Herbs</a>
+  <a href="/formulas.html" class="ni active"><div class="ni-i">⚗️</div>Formulas</a>
+  <a href="/consult.html" class="ni"><div class="ni-i">📞</div>Consult</a>
+  <a href="/about.html" class="ni"><div class="ni-i">☯</div>About</a>
+</nav>
+
+<script>
+const FORMULAS = [
+  {id:1, name:"Nausea & Vomiting", icon:"🤢", cat:"Digestive",
+   tcm_pattern:"Rebellious Stomach Qi · Cold or Heat in the Middle Jiao",
+   tcm_detail:"In TCM, nausea arises when Stomach Qi rebels upward rather than descending as it should. The primary TCM treatment is to harmonise the Stomach and descend rebellious Qi. Ginger (Sheng Jiang / Gan Jiang) is the primary herb — it warms the Middle Jiao, disperses Cold, stops vomiting, and is one of the most frequently cited herbs in the classical Shang Han Lun for this pattern. Peppermint assists by coursing Liver Qi (which often invades the Stomach causing rebellion) and clearing any Heat component. Fennel and Cardamom open the Middle Jiao and move stagnant Qi.",
+   west_detail:"Western evidence: Ginger contains gingerols and shogaols which inhibit serotonin receptors in the gut — the same mechanism as pharmaceutical anti-emetics. Multiple RCTs confirm efficacy for morning sickness, chemotherapy-induced nausea, and post-operative nausea.",
+   herbs:["Ginger (干姜/生姜)","Peppermint (薄荷)","Fennel (茴香)","Cardamom (豆蔻)"],
+   how:"Steep 5 slices of fresh ginger + 4 fresh mint leaves + pinch fennel seeds in boiling water for 10 minutes. Drink warm, 3 cups daily. For stronger effect add a crushed cardamom pod. Ginger can also be chewed raw.",
+   dosage:[{n:"Ginger",v:"5 slices fresh daily"},{n:"Peppermint",v:"10 leaves / cup"},{n:"Fennel",v:"½ tsp seeds"},{n:"Cardamom",v:"1 pod crushed"}],
+   caution:"Avoid high-dose ginger in pregnancy without guidance. Severe or prolonged vomiting — seek medical attention."},
+
+  {id:2, name:"Anxiety & Stress", icon:"😰", cat:"Mind & Mood",
+   tcm_pattern:"Liver Qi Stagnation · Heart Shen Disturbance · Spleen Qi Deficiency",
+   tcm_detail:"TCM understands anxiety as a disturbance of the Shen (spirit) which resides in the Heart. When Liver Qi stagnates — from emotional suppression, overwork, or frustration — it generates Heat which rises to disturb the Heart Shen. Simultaneously, prolonged worry damages the Spleen, reducing the generation of Qi and Blood that nourishes the Heart. Treatment principle: soothe Liver Qi, calm the Heart, nourish Blood, quieten the Shen. Lavender calms Heart Shen and clears Liver Heat. Chamomile soothes Liver Qi and calms the Shen. Lemon Balm (Xiang Feng Cao) courses the Liver and calms the nervous system. Passionflower quietens the Shen strongly.",
+   west_detail:"Western evidence: Lavender contains linalool which binds GABA receptors — the same mechanism as benzodiazepines. Clinical trials show Silexan (lavender extract) comparable to lorazepam for generalised anxiety. Chamomile apigenin binds benzodiazepine receptors. Passionflower shown comparable to oxazepam in one RCT.",
+   herbs:["Lavender (薰衣草)","Chamomile (洋甘菊)","Lemon Balm (蜜蜂花)","Passionflower (西番莲)"],
+   how:"Combine equal parts dried lavender + chamomile + lemon balm. Steep 1 heaped teaspoon in just-off-boiling water for 7 minutes. Drink 2-3 cups daily. Evening cup most important — before bed. Raw honey if desired.",
+   dosage:[{n:"Lavender",v:"½ tsp dried"},{n:"Chamomile",v:"1 tsp dried"},{n:"Lemon Balm",v:"1 tsp dried"},{n:"Passionflower",v:"½ tsp dried"}],
+   caution:"Avoid with sedative medication. Do not drive if strongly sedated. Consult doctor if on antidepressants."},
+
+  {id:3, name:"Poor Sleep & Insomnia", icon:"😴", cat:"Mind & Mood",
+   tcm_pattern:"Heart Blood Deficiency · Kidney Yin Deficiency · Shen Disturbance · Liver Yang Rising",
+   tcm_detail:"In TCM, sleep is the time when the Shen (spirit) returns to the Heart and Yang retreats inward. Insomnia indicates the Shen cannot settle — either because the Heart lacks the Blood to anchor it (deficiency insomnia: light, dream-filled, easily woken) or because pathogenic Heat or Liver Yang disturbs it (excess insomnia: unable to fall asleep, racing mind). Valerian root strongly descends and calms the Shen. Chamomile nourishes Heart Yin and clears empty Heat. Passionflower quietens the Heart and Liver. Oats (Avena sativa) nourish the Heart and calm the nervous system — a Spleen Qi tonic that builds the Blood over time.",
+   west_detail:"Western evidence: Valerian contains valerenic acid which inhibits GABA transaminase, increasing GABA availability. Meta-analyses support improved sleep quality and latency. Chamomile apigenin has sedative properties confirmed in multiple studies.",
+   herbs:["Valerian (缬草)","Chamomile (洋甘菊)","Passionflower (西番莲)","Lavender (薰衣草)","Oats (燕麦)"],
+   how:"Evening tea 1 hour before bed: steep valerian root (½ tsp) + chamomile (1 tsp) + passionflower (½ tsp) for 10 minutes. Diffuse lavender oil in bedroom. Eat oats at dinner — contains avenin, a natural sedative. Avoid screens and stimulation after 9pm.",
+   dosage:[{n:"Valerian",v:"½ tsp dried root"},{n:"Chamomile",v:"1 tsp dried"},{n:"Passionflower",v:"½ tsp dried"},{n:"Lavender",v:"Diffuse essential oil"}],
+   caution:"Avoid with sleeping medication. Valerian may cause morning grogginess initially. Strong smell — mask with chamomile."},
+
+  {id:4, name:"Digestive Bloating & IBS", icon:"🫃", cat:"Digestive",
+   tcm_pattern:"Liver Qi Invading Spleen · Damp Accumulation in Middle Jiao · Spleen Qi Deficiency",
+   tcm_detail:"IBS and bloating in TCM is most commonly Liver-Spleen disharmony — the Liver (governing smooth flow of Qi) overacts on the Spleen (governing transformation and transportation), causing irregular digestion, bloating, and alternating bowel habits. The stress-IBS connection that Western medicine has recently identified is what TCM has understood for centuries as Liver invading Spleen. Treatment: course Liver Qi, strengthen Spleen, resolve Damp, regulate the intestines. Peppermint is one of the most important herbs — it enters the Liver channel, courses Qi, and relaxes intestinal smooth muscle. Fennel moves Qi and transforms Cold-Damp. Ginger warms the Spleen and dispels Damp. Chamomile soothes Liver-Spleen disharmony.",
+   west_detail:"Western evidence: Enteric-coated peppermint oil is as effective as antispasmodic drugs for IBS in multiple RCTs — it relaxes smooth muscle via calcium channel antagonism. Fennel has antispasmodic and carminative effects confirmed clinically.",
+   herbs:["Peppermint (薄荷)","Fennel (茴香)","Ginger (干姜)","Chamomile (洋甘菊)","Dill (莳萝)"],
+   how:"After meals: steep peppermint leaves (8-10) + fennel seeds (1 tsp) + 2 ginger slices for 8 minutes. Drink warm after each main meal. For acute bloating add dill seeds. For stress-related IBS add chamomile. Enteric-coated peppermint capsules from health stores provide stronger relief.",
+   dosage:[{n:"Peppermint",v:"8-10 fresh leaves"},{n:"Fennel",v:"1 tsp seeds"},{n:"Ginger",v:"2-3 slices"},{n:"Dill",v:"½ tsp seeds if bloating"}],
+   caution:"Peppermint worsens acid reflux. Avoid if hiatus hernia. Severe or bleeding IBS — seek medical assessment."},
+
+  {id:5, name:"Low Energy & Fatigue", icon:"🪫", cat:"Vitality",
+   tcm_pattern:"Spleen Qi Deficiency · Kidney Yang Deficiency · Qi and Blood Deficiency",
+   tcm_detail:"Fatigue in TCM is primarily a Spleen deficiency pattern — the Spleen (Earth organ, governs transformation of food into Qi and Blood) is depleted, failing to produce sufficient Qi to animate the body. Over time, Kidney Yang deficiency develops — the root fire of the body becomes insufficient. Ginseng (Ren Shen) is the pre-eminent Qi tonic in the Chinese Materia Medica — it strongly tonifies Yuan Qi (source Qi), strengthens the Spleen, and calms the Shen. Ashwagandha (a Western ayurvedic adaptogen with similar TCM properties) tonifies Kidney Yang. Cinnamon warms the Middle and Kidney Yang. Rosemary stimulates Yang Qi and the circulation of clear Yang to the head.",
+   west_detail:"Western evidence: Ginseng ginsenosides are adaptogens — they modulate the HPA axis and normalise cortisol. Clinical trials demonstrate improved fatigue scores, cognitive function, and immune markers. Ashwagandha withanolides significantly reduce cortisol and improve fatigue in RCTs.",
+   herbs:["Ginseng (人参)","Ashwagandha (睡茄)","Cinnamon (肉桂)","Rosemary (迷迭香)","Ginger (干姜)"],
+   how:"Morning tonic: steep 1 cinnamon stick + 3 ginger slices + fresh rosemary sprig for 10 minutes. Add manuka honey. Drink before breakfast. Ginseng and ashwagandha as supplements from health shops — follow product dosage.",
+   dosage:[{n:"Cinnamon",v:"1 stick steeped"},{n:"Ginger",v:"3-4 slices"},{n:"Rosemary",v:"1 fresh sprig"},{n:"Ginseng/Ashwagandha",v:"Supplement — per label"}],
+   caution:"Avoid stimulating herbs late in the day. Ginseng can raise blood pressure — caution in hypertension. Persistent fatigue should be medically investigated."},
+
+  {id:6, name:"Menstrual Pain", icon:"🩸", cat:"Women's Health",
+   tcm_pattern:"Blood Stagnation · Cold in the Uterus · Liver Qi Stagnation",
+   tcm_detail:"Dysmenorrhoea in TCM is almost always a Blood stagnation pattern, often combined with Cold in the Uterus. The Liver governs the smooth flow of Qi and Blood — when Liver Qi stagnates, Blood stagnates with it. Cold constricts the channels and impedes Blood flow. Treatment principle: warm the uterus, move Blood, course Liver Qi, stop pain. Turmeric (Jiang Huang) strongly moves Blood and regulates Qi — a key herb for gynaecological Blood stagnation. Ginger (especially dried ginger) warms the uterus and moves Cold-Blood stagnation. Cinnamon warms the channels, disperses Cold, and promotes Blood flow. Black Pepper increases absorption of all herbs by 2,000%.",
+   west_detail:"Western evidence: Turmeric curcumin inhibits prostaglandin synthesis (same mechanism as NSAIDs). Ginger in clinical trials comparable to ibuprofen for dysmenorrhoea pain reduction. Multiple RCTs support both.",
+   herbs:["Turmeric (姜黄)","Ginger (干姜)","Cinnamon (肉桂)","Fennel (茴香)","Black Pepper (胡椒)"],
+   how:"Begin 2-3 days before expected period. Warm tea: 1 tsp turmeric + 5 ginger slices + 1 cinnamon stick + pinch black pepper in hot water or warm milk. 3 cups daily. Fennel seeds separately for cramping. Apply warm compress to lower abdomen. Avoid all cold food and drinks.",
+   dosage:[{n:"Turmeric",v:"1 tsp powder"},{n:"Ginger",v:"5 slices fresh"},{n:"Cinnamon",v:"1 stick"},{n:"Black Pepper",v:"Pinch essential"}],
+   caution:"Avoid high-dose turmeric during heavy bleeding. Severe pain may indicate endometriosis — requires professional TCM assessment."},
+
+  {id:7, name:"PCOS Support", icon:"♀️", cat:"Women's Health",
+   tcm_pattern:"Kidney Deficiency · Phlegm-Damp Accumulation · Blood Stagnation · Liver Qi Stagnation",
+   tcm_detail:"PCOS is a complex pattern in TCM, most commonly involving Kidney deficiency (particularly Kidney Yang deficiency) as the root, with Phlegm-Damp accumulation and Blood stagnation as the manifestations. The Kidney governs reproduction — when Kidney Yang is insufficient, transformation is impaired and Phlegm-Damp accumulates, obstructing the Chong and Ren channels and disrupting the menstrual cycle. Cinnamon warms Kidney Yang and transforms Phlegm-Damp. Spearmint/Mint has been clinically shown to reduce androgen levels. Apple cider vinegar improves insulin sensitivity. Green tea reduces androgens and aids weight management in PCOS.",
+   west_detail:"Western evidence: Spearmint tea (2 cups daily) shown to reduce free testosterone in PCOS in RCTs. Cinnamon improves insulin resistance comparable to metformin in some studies. Inositol (found in wholegrains) is one of the most evidence-based supplements for PCOS ovulation.",
+   herbs:["Cinnamon (肉桂)","Spearmint/Mint (薄荷)","Apple Cider Vinegar","Green Tea (绿茶)","Fenugreek (葫芦巴)","Turmeric (姜黄)"],
+   how:"Daily PCOS protocol — Morning: 1 tbsp ACV diluted in warm water before breakfast. Cinnamon in oats or smoothie. Mid-morning: spearmint tea (2 cups daily — clinically significant). Turmeric in all cooking. Green tea throughout day. This is supportive — professional TCM treatment produces significantly better outcomes.",
+   dosage:[{n:"ACV",v:"1 tbsp diluted AM"},{n:"Spearmint tea",v:"2 cups/day"},{n:"Cinnamon",v:"½ tsp with food"},{n:"Green Tea",v:"2-3 cups/day"}],
+   caution:"Supportive measures only — PCOS requires professional diagnosis. If trying to conceive, consult Charles John directly for specialist TCM fertility treatment."},
+
+  {id:8, name:"High Blood Pressure", icon:"🩺", cat:"Cardiovascular",
+   tcm_pattern:"Liver Yang Rising · Kidney Yin Deficiency · Liver Fire Blazing",
+   tcm_detail:"Hypertension in TCM is most commonly Liver Yang rising — when Kidney Yin (the cooling, nourishing principle) is deficient, it fails to anchor Liver Yang, which rises upward causing headaches, red face, irritability, and high blood pressure. Treatment: nourish Kidney Yin, anchor Liver Yang, clear Liver Fire, calm the Liver. Hibiscus (Luo Shen Hua) clears Heat and descends Liver Yang — it has the strongest clinical evidence of any herb for blood pressure. Hawthorn (Shan Zha) moves Heart Blood and tonifies the Heart. Celery seed (芹菜子) clears Damp-Heat and descends Liver Yang. Garlic resolves Phlegm and moves Blood.",
+   west_detail:"Western evidence: Hibiscus tea clinical trials show reduction of 7-10 mmHg systolic — comparable to captopril in one Tanzanian RCT. Celery seed phthalides relax smooth muscle in blood vessel walls. Garlic allicin reduces blood pressure and LDL.",
+   herbs:["Hibiscus (玫瑰茄)","Hawthorn (山楂)","Garlic (大蒜)","Celery Seed (芹菜子)","Green Tea (绿茶)"],
+   how:"Daily: hibiscus tea (steep 2-3 dried flowers, 2 cups daily). 2 raw garlic cloves in meals. Hawthorn tea or supplement. Celery seed capsules. Green tea throughout day. Monitor blood pressure regularly.",
+   dosage:[{n:"Hibiscus",v:"2-3 flowers × 2 cups"},{n:"Raw Garlic",v:"2 cloves/day"},{n:"Hawthorn",v:"1 cup tea/day"},{n:"Celery Seed",v:"As capsules"}],
+   caution:"DO NOT stop blood pressure medication without medical supervision. These are adjunctive measures only. If readings remain high, see your GP."},
+
+  {id:9, name:"Recurrent Colds & Low Immunity", icon:"🛡️", cat:"Immune",
+   tcm_pattern:"Wei Qi Deficiency · Lung Qi Deficiency · Spleen Qi Deficiency",
+   tcm_detail:"Recurrent infections in TCM indicate Wei Qi (defensive Qi) deficiency. Wei Qi circulates on the body's surface, warming and protecting it from external pathogenic invasion. Wei Qi is generated by the Spleen and distributed by the Lung — weakness in either organ depletes Wei Qi. Treatment: tonify Spleen and Lung Qi, strengthen Wei Qi, consolidate the exterior. Astragalus (Huang Qi) is the primary herb for Wei Qi deficiency — it strongly tonifies the Spleen and Lung, raises Yang Qi, and has been extensively studied for immune modulation. Elderberry strongly supports Wei Qi during active infection. Echinacea (used short-term only) activates Wei Qi during acute invasion.",
+   west_detail:"Western evidence: Astragalus polysaccharides activate macrophages, NK cells, and T-lymphocytes in multiple studies. Elderberry reduces influenza duration by 4 days in RCTs. Echinacea meta-analyses confirm reduction in cold frequency and duration.",
+   herbs:["Astragalus (黄芪)","Elderberry (接骨木莓)","Garlic (大蒜)","Ginger (干姜)","Thyme (百里香)","Echinacea (紫锥菊)"],
+   how:"Prevention protocol (autumn/winter): daily immune tea — 3 ginger slices + 2 crushed garlic cloves + thyme sprig + pinch turmeric. Steep 10 minutes. Astragalus supplement or tea year-round for Wei Qi. At first sign of cold: elderberry syrup + echinacea supplement (short-term only).",
+   dosage:[{n:"Ginger",v:"3 slices daily"},{n:"Garlic",v:"2 cloves daily"},{n:"Astragalus",v:"Supplement/tea daily"},{n:"Elderberry",v:"Per product label acutely"}],
+   caution:"Echinacea — use only short-term for acute illness. Avoid with autoimmune conditions. Never eat raw elderberries."},
+
+  {id:10, name:"Cough & Chest Congestion", icon:"🫁", cat:"Respiratory",
+   tcm_pattern:"Wind-Cold or Wind-Heat Invading Lung · Phlegm Accumulating in Lung · Lung Qi Failing to Descend",
+   tcm_detail:"Cough in TCM indicates Lung Qi failing to descend — it rebels upward as cough. The pathogen (Wind-Cold or Wind-Heat) causes Lung Qi to stagnate and Phlegm to accumulate. Wind-Cold cough: chills, white/clear phlegm, no thirst — treat with warm pungent herbs that release the exterior and warm the Lung. Wind-Heat cough: fever, yellow phlegm, thirst — treat with cool pungent herbs. Thyme (Bai Li Xiang) is an excellent Lung herb for both patterns — antimicrobial, expectorant, antispasmodic. Ginger releases Wind-Cold from the exterior. Oregano is strongly antimicrobial. Lemon and honey soothe inflamed mucous membranes.",
+   west_detail:"Western evidence: Thyme extract superior to ivy leaf for acute bronchitis in RCTs. Oregano carvacrol is active against respiratory pathogens. Honey clinically superior to dextromethorphan (cough syrup) for children's cough.",
+   herbs:["Thyme (百里香)","Ginger (干姜)","Lemon (柠檬)","Manuka Honey (麦卢卡蜜)","Oregano (牛至)","Garlic (大蒜)"],
+   how:"Chest tea: large handful fresh thyme + 3 ginger slices, steep in boiling water 10 minutes. Add half lemon squeezed + 1 tsp manuka honey. 4 cups daily. For thick phlegm add crushed garlic. Steam inhalation with thyme and a few drops eucalyptus.",
+   dosage:[{n:"Thyme",v:"Large handful fresh"},{n:"Ginger",v:"3-4 slices"},{n:"Lemon",v:"Half squeezed per cup"},{n:"Manuka Honey",v:"1 tsp per cup"}],
+   caution:"Cough lasting over 3 weeks, blood in phlegm, or fever above 39°C — seek medical attention immediately."},
+
+  {id:11, name:"Joint Pain & Arthritis", icon:"🦴", cat:"Pain & Inflammation",
+   tcm_pattern:"Bi Syndrome · Wind-Cold-Damp or Wind-Heat-Damp Obstructing Channels · Kidney and Liver Deficiency",
+   tcm_detail:"Joint pain in TCM falls under Bi (obstruction) syndrome — where Wind, Cold, Damp, or Heat obstructs the flow of Qi and Blood through the channels, causing pain, swelling, and stiffness. Wind Bi: pain moves from joint to joint. Cold Bi: fixed severe pain, worse in cold, relieved by warmth. Damp Bi: heavy, fixed, swollen joints, worse in damp weather. Heat Bi: red, hot, swollen joints. In chronic arthritis, Liver and Kidney deficiency underlies the Bi syndrome — the Liver governs tendons, the Kidney governs bones. Turmeric (Jiang Huang) moves Blood and Qi in the channels, reducing both Damp-Heat and Cold-Damp Bi. Ginger warms and unblocks Cold Bi. Rosehip nourishes Liver and Kidney and reduces inflammation.",
+   west_detail:"Western evidence: Turmeric curcumin inhibits NF-κB and COX-2 — comparable to NSAIDs in RCTs for osteoarthritis. Rosehip GOPO (galactolipid) shown comparable to conventional treatment for osteoarthritis in multiple trials. Ginger inhibits both COX and LOX inflammatory pathways.",
+   herbs:["Turmeric (姜黄)","Ginger (干姜)","Rosehip (玫瑰果)","Cinnamon (肉桂)","Black Pepper (胡椒)","Cayenne (辣椒粉)"],
+   how:"Golden milk daily: 1 tsp turmeric + ½ tsp ginger + ¼ tsp cinnamon + pinch black pepper in warm milk. Rosehip tea or GOPO supplement. Topical: diluted cayenne oil on painful joints (1 tsp cayenne in 250ml carrier oil — always patch test).",
+   dosage:[{n:"Turmeric",v:"1 tsp daily in golden milk"},{n:"Black Pepper",v:"Pinch — essential with turmeric"},{n:"Rosehip (GOPO)",v:"Supplement or 2 cups tea"},{n:"Cayenne topical",v:"Diluted in carrier oil only"}],
+   caution:"Cayenne topical — always dilute, patch test first. Turmeric interacts with anticoagulants. Consult GP for severe joint inflammation or swelling."},
+
+  {id:12, name:"Menopausal Hot Flushes", icon:"🌡️", cat:"Women's Health",
+   tcm_pattern:"Kidney Yin Deficiency · Empty Heat Rising · Heart-Kidney Disharmony",
+   tcm_detail:"Menopause in TCM is understood as Kidney Jing and Yin decline — the natural depletion of the Tian Gui (reproductive essence) that occurs around the age of 49 (7×7 cycle in women, as described in the Huang Di Nei Jing). When Kidney Yin declines, Empty Heat arises — unlike real Heat which has a pathogen, Empty Heat comes from deficiency of the cooling principle. This Empty Heat disturbs the Heart Shen causing insomnia and palpitations, and flares upward causing hot flushes, night sweats, and facial redness. Treatment: nourish Kidney Yin, clear Empty Heat, harmonise Heart and Kidney. Sage (Ding Xiang Cao) astrings sweat and cools empty Heat. Goji Berries nourish Kidney and Liver Yin. Red Clover and Black Cohosh contain phytoestrogens — Western herbs with oestrogen-like activity.",
+   west_detail:"Western evidence: Sage clinically reduces hot flush frequency by 50-64% in trials. Goji berries contain zeaxanthin and betaine — antioxidant and hormone-supportive. Black cohosh has mixed but generally positive evidence for menopausal symptom reduction.",
+   herbs:["Sage (鼠尾草)","Goji Berries (枸杞子)","Red Clover (红三叶草)","Black Cohosh (升麻)","Flaxseed (亚麻子)","Valerian (缬草)"],
+   how:"Cooling sage tea: 5 fresh sage leaves steeped in just-off-boiling water 5 minutes — do not boil. 2 cups daily. Goji berries 15-20 daily. Ground flaxseed 2 tbsp in breakfast (phytoestrogenic). Red clover and black cohosh as supplements.",
+   dosage:[{n:"Sage tea",v:"5 leaves × 2 cups/day"},{n:"Goji Berries",v:"15-20 daily"},{n:"Flaxseed",v:"2 tbsp ground/day"},{n:"Red Clover",v:"Supplement — per label"}],
+   caution:"Avoid large sage doses in pregnancy. Black cohosh — avoid in liver disease. For significant menopausal symptoms, professional TCM acupuncture produces significantly better outcomes."},
+
+  {id:13, name:"Blood Sugar Support", icon:"🍬", cat:"Metabolic",
+   tcm_pattern:"Spleen Qi Deficiency · Damp-Heat Accumulation · Stomach Heat Consuming Fluids",
+   tcm_detail:"Diabetes and blood sugar dysregulation in TCM corresponds to the pattern of Xiao Ke (wasting and thirsting) — characterised by the three thirsts: excessive eating (Stomach Heat), thirst (Lung Heat consuming fluids), and urination (Kidney deficiency). The root is usually Spleen Qi and Yin deficiency — the Spleen fails to properly transform food, causing Damp-Heat to accumulate and blood sugar to dysregulate. Cinnamon (Rou Gui) warms the Spleen and Kidney Yang and improves transformation and transportation. Fenugreek has been used as a Blood-sugar reducing herb in TCM-adjacent traditions for centuries. Apple cider vinegar reduces post-meal glucose spikes.",
+   west_detail:"Western evidence: Ceylon cinnamon reduces fasting blood glucose by 18-29% in multiple RCTs. Fenugreek fibre slows carbohydrate absorption and improves insulin sensitivity. ACV taken before carbohydrate-rich meals reduces post-meal glucose response by up to 34%.",
+   herbs:["Cinnamon (肉桂)","Fenugreek (葫芦巴)","Apple Cider Vinegar","Green Tea (绿茶)","Turmeric (姜黄)","Bay Leaf (月桂叶)"],
+   how:"Daily protocol: Before meals — 1 tbsp ACV diluted in water. Ceylon cinnamon ½ tsp with each meal. Fenugreek seeds: soak 1 tsp overnight, drink water and eat seeds in the morning. Green tea replaces sugary drinks. Bay leaves in all cooking.",
+   dosage:[{n:"Ceylon Cinnamon",v:"½ tsp × 3 meals"},{n:"ACV",v:"1 tbsp before meals"},{n:"Fenugreek",v:"1 tsp soaked seeds AM"},{n:"Green Tea",v:"3+ cups/day"}],
+   caution:"CRITICAL: These herbs lower blood sugar. Combined with diabetes medication they can cause hypoglycaemia. Inform your GP. Monitor blood glucose carefully. DO NOT reduce medication without medical supervision."},
+
+  {id:14, name:"Depression & Low Mood", icon:"🌧️", cat:"Mind & Mood",
+   tcm_pattern:"Liver Qi Stagnation · Heart and Spleen Deficiency · Blood Deficiency · Kidney Yang Deficiency",
+   tcm_detail:"Depression in TCM is most commonly understood as Liver Qi stagnation — the Liver's function of ensuring smooth, free-flowing movement of Qi is impaired. Emotion (particularly unexpressed emotion or prolonged stress) is the primary cause. Over time, stagnant Liver Qi transforms to Heat or Fire which disturbs the Heart Shen, and the Spleen weakens from ongoing emotional strain, failing to generate Blood that nourishes the Heart and Mind. In severe long-term depression, Kidney Yang deficiency (the deep warming root) becomes involved. Saffron (Zang Hong Hua) moves Blood stagnation and lifts the Shen — one of the most remarkable herbs in terms of clinical evidence. St John's Wort courses Liver Qi and clears Liver Heat. Holy Basil (Tulsi) strongly moves Liver Qi and calms the Shen.",
+   west_detail:"Western evidence: Saffron (30mg/day) clinically comparable to fluoxetine (Prozac) for mild-moderate depression in multiple RCTs with fewer side effects. St John's Wort — 29 RCTs confirm efficacy comparable to antidepressants for mild-moderate depression. Significant drug interactions.",
+   herbs:["Saffron (藏红花)","St John's Wort (贯叶连翘)","Holy Basil (圣罗勒)","Lavender (薰衣草)","Dark Leafy Greens","Oats (燕麦)"],
+   how:"Saffron tea: steep 5-6 strands in warm (not boiling) water 5 minutes. Daily. Oats at breakfast daily. Increase dark leafy greens. St John's Wort as supplement only (tea is ineffective). Holy Basil tea 2 cups daily. Daily movement, sunlight, and social connection are essential companions.",
+   dosage:[{n:"Saffron",v:"5-6 strands daily"},{n:"Holy Basil",v:"2 cups tea/day"},{n:"Oats",v:"Daily breakfast"},{n:"St John's Wort",v:"Supplement — per label"}],
+   caution:"St John's Wort MAJOR DRUG INTERACTIONS: contraceptive pill, antiretrovirals, warfarin, SSRIs, cyclosporin. Do NOT combine with antidepressants. Depression is serious — seek professional support."},
+
+  {id:15, name:"Memory & Cognitive Support", icon:"🧠", cat:"Mind & Mood",
+   tcm_pattern:"Kidney Jing Deficiency · Heart Blood Deficiency · Clear Yang Not Rising to the Head",
+   tcm_detail:"Memory and cognition in TCM are governed by the Kidney Jing (essence) which produces Marrow — including bone marrow and brain tissue. The classical text states 'the brain is the sea of Marrow'. When Kidney Jing declines (naturally with age, or prematurely from overwork, stress, or constitutional weakness), the brain is inadequately nourished. Simultaneously, Heart Blood deficiency deprives the Shen of its anchor. Ginkgo (Yin Xing Ye) is the key herb — it opens the channels to the brain, moves Blood in the head, and has been used in Chinese medicine for over 2,000 years. Lion's Mane mushroom stimulates Nerve Growth Factor. Rosemary carries clear Yang Qi upward to the head.",
+   west_detail:"Western evidence: Ginkgo biloba improves cognitive function in mild cognitive impairment in multiple large trials. Lion's Mane (Hericium erinaceus) is the only food compound known to stimulate Nerve Growth Factor synthesis. Rosemary 1,8-cineole improves memory performance in studies.",
+   herbs:["Ginkgo (银杏叶)","Lion's Mane (猴头菇)","Rosemary (迷迭香)","Matcha (抹茶)","Blueberry (蓝莓)","Walnuts (核桃仁)"],
+   how:"Daily brain protocol: Morning matcha or green tea. Rosemary in cooking and diffused. Blueberries 30g daily. Walnuts 7-8 daily. Ginkgo and Lion's Mane as supplements — strongest evidence. Even smelling rosemary essential oil improves memory in studies.",
+   dosage:[{n:"Matcha/Green Tea",v:"1-2 cups AM"},{n:"Blueberries",v:"30g daily"},{n:"Walnuts",v:"7-8 daily"},{n:"Ginkgo supplement",v:"120-240mg/day"}],
+   caution:"Ginkgo anticoagulant — avoid with warfarin/aspirin. Stop 2 weeks before surgery. Serious cognitive decline should be medically assessed."},
+
+  {id:16, name:"Liver Support & Detox", icon:"🟤", cat:"Detox & Cleanse",
+   tcm_pattern:"Liver Qi Stagnation · Damp-Heat in Liver and Gallbladder · Liver Blood Deficiency",
+   tcm_detail:"The Liver in TCM is the organ of smooth flow — it ensures the free movement of Qi and Blood throughout the body, regulates emotions, and stores Blood during rest. Liver Qi stagnation is the most common TCM pattern in modern life — stress, alcohol, irregular eating, and unresolved emotion all impair the Liver's spreading function. Damp-Heat accumulates from poor diet and transforms into Liver-Gallbladder Damp-Heat. Dandelion Root (Pu Gong Ying) clears Liver Heat and resolves Damp — one of the most important herbs for this pattern. Milk Thistle (Shui Fei Ji) is a liver protectant — regenerates hepatocytes. Turmeric moves Liver Qi and clears Damp-Heat. Beetroot nourishes Liver Blood.",
+   west_detail:"Western evidence: Milk thistle silymarin is one of the most potent hepatoprotective compounds known — it regenerates liver cells and protects against hepatotoxic agents. Clinical trials support its use in alcoholic liver disease, NAFLD, and hepatitis. Dandelion root increases bile flow.",
+   herbs:["Dandelion (蒲公英)","Milk Thistle (水飞蓟)","Turmeric (姜黄)","Lemon (柠檬)","Beetroot (甜菜根)","Green Tea (绿茶)"],
+   how:"Morning liver protocol: warm water + half lemon + 1 tsp turmeric. Dandelion root tea 2 cups daily (excellent coffee alternative). Milk thistle supplement from Boots or Holland & Barrett. Fresh beetroot juiced or roasted. Reduce alcohol, processed food, and late-night eating.",
+   dosage:[{n:"Lemon water",v:"Morning warm, daily"},{n:"Dandelion tea",v:"2 cups/day"},{n:"Milk Thistle",v:"Supplement — per label"},{n:"Beetroot",v:"80-100g daily"}],
+   caution:"Milk thistle can interact with certain medications. Diagnosed liver disease — consult doctor before any liver protocol."},
+
+  {id:17, name:"Skin Health & Eczema", icon:"✨", cat:"Skin",
+   tcm_pattern:"Damp-Heat in the Blood · Blood Heat · Wind-Heat Affecting the Skin · Spleen Qi Deficiency",
+   tcm_detail:"Skin conditions in TCM are almost always internal pattern disorders manifesting on the exterior. Eczema is most commonly Blood Heat or Damp-Heat — pathogenic Heat in the Blood level steams outward to the skin surface, causing redness, itching, and weeping lesions. Wind causes the moving, itching quality. In chronic eczema, Blood deficiency and Spleen Qi deficiency create Dryness. Treatment: cool the Blood, clear Heat, resolve Damp, expel Wind, nourish Blood. Nettle (Xun Ma) clears Heat from the Blood and has anti-histamine properties. Turmeric clears Blood Heat and resolves Damp-Heat. Flaxseed omega-3s nourish the skin and reduce systemic inflammation.",
+   west_detail:"Western evidence: Nettle contains quercetin and other anti-histamine compounds — freeze-dried nettle rated as effective as antihistamines in one trial. Flaxseed omega-3s reduce inflammatory markers and improve skin barrier. Evening primrose oil (GLA) has the strongest evidence for eczema.",
+   herbs:["Nettle (荨麻)","Turmeric (姜黄)","Chamomile (洋甘菊)","Flaxseed (亚麻子)","Calendula (金盏花)","Green Tea (绿茶)"],
+   how:"Internal: anti-inflammatory golden milk daily. Nettle tea 2-3 cups daily. Flaxseed 2 tbsp ground in breakfast. External: calendula cream on affected skin. Cool chamomile teabag compress on irritated areas. Avoid triggers: dairy, gluten, sugar in flares.",
+   dosage:[{n:"Nettle Tea",v:"2-3 cups/day"},{n:"Flaxseed",v:"2 tbsp ground/day"},{n:"Golden Milk",v:"1 cup daily"},{n:"Calendula",v:"Cream topically"}],
+   caution:"Eczema requires professional assessment. Do not stop prescribed steroid creams suddenly. Infected skin — seek medical attention."},
+
+  {id:18, name:"Headaches & Migraines", icon:"🤕", cat:"Pain & Inflammation",
+   tcm_pattern:"Liver Yang Rising · Wind-Cold or Wind-Heat Invasion · Blood Deficiency · Liver Fire Blazing",
+   tcm_detail:"Headaches in TCM are classified by location (channel pathway) and quality. Temporal headaches: Liver/Gallbladder channel — often Liver Yang rising or Liver Fire. Frontal: Stomach channel — often Stomach Heat or deficiency. Occipital: Bladder/Kidney channel — often Wind invasion or Kidney deficiency. Vertex: Liver channel — often Blood deficiency or Liver Yang. Migraine is most commonly Liver Yang rising — the Liver Yang (which should be anchored by Kidney Yin) rises to flood the head. Peppermint oil applied to the temples effectively releases Wind, opens the channels, and descends Liver Yang locally. Lavender calms Liver Yang and soothes the Shen.",
+   west_detail:"Western evidence: Peppermint oil 10% applied to temples in RCTs comparable to 1000mg paracetamol for tension headache — relaxes temporal and frontal muscles and reduces serotonin activity. Lavender inhalation reduces migraine severity in RCT. Ginger shown comparable to sumatriptan for migraine in one trial.",
+   herbs:["Peppermint (薄荷)","Lavender (薰衣草)","Ginger (干姜)","Chamomile (洋甘菊)"],
+   how:"Tension headache: diluted peppermint essential oil applied to temples and back of neck. Peppermint tea internally. Lavender — inhale or diffuse. For nausea with migraine: ginger tea. Cold compress on forehead. Lie in dark quiet room.",
+   dosage:[{n:"Peppermint oil",v:"Diluted in carrier oil — temples"},{n:"Peppermint tea",v:"2-3 cups acutely"},{n:"Lavender oil",v:"Diffuse or inhale"},{n:"Ginger tea",v:"3 slices steeped"}],
+   caution:"Never apply neat essential oils to skin — always dilute. Sudden severe headache or worst headache of life — seek emergency care immediately."},
+
+  {id:19, name:"Fertility Support", icon:"🌸", cat:"Women's Health",
+   tcm_pattern:"Kidney Jing and Yang Deficiency · Blood Deficiency · Liver Qi Stagnation · Cold in the Uterus",
+   tcm_detail:"Fertility in TCM is governed primarily by the Kidney — specifically Kidney Jing (reproductive essence) and the Chong Mai (Sea of Blood) and Ren Mai (Conception Vessel) channels. The classical text states that at age 28 a woman is at the peak of her reproductive Jing. Fertility treatment focuses on: tonifying Kidney Jing and Yang (the root of reproduction), nourishing Blood and the Chong Mai, resolving any obstruction (Cold, stagnation, Phlegm-Damp), and regulating the Liver (which controls the monthly cycle). Goji berries nourish Kidney and Liver Yin and Blood. Saffron moves Blood and opens the Chong Mai. Maca (similar to Kidney Yang tonic herbs) supports reproductive function. This is an area where professional TCM treatment — acupuncture + Chinese herbal medicine — produces its most remarkable clinical results.",
+   west_detail:"Western evidence: Multiple IVF outcome studies show acupuncture significantly improves implantation rates. Goji berries protect oocyte quality. Maca improves sperm parameters and female libido in RCTs.",
+   herbs:["Goji Berries (枸杞子)","Saffron (藏红花)","Maca Root (玛卡)","Dark Leafy Greens","Turmeric (姜黄)","Walnuts (核桃仁)"],
+   how:"Daily supportive protocol: Goji berries 15-20 daily. Saffron tea (5 strands). Maca powder in smoothies. Maximise dark leafy greens for folate. Walnuts for essential fatty acids. Avoid alcohol, smoking, cold drinks, and raw food in excess. This is supportive only — clinical results require professional treatment.",
+   dosage:[{n:"Goji Berries",v:"15-20 daily"},{n:"Saffron",v:"5 strands tea/day"},{n:"Maca Powder",v:"1 tsp in smoothie"},{n:"Dark Greens",v:"Daily — generous portions"}],
+   caution:"Dong Quai — avoid in pregnancy. Maca — avoid if oestrogen-sensitive. Fertility challenges require specialist assessment — contact Charles John for professional TCM fertility treatment."},
+
+  {id:20, name:"Cholesterol & Heart Health", icon:"❤️", cat:"Cardiovascular",
+   tcm_pattern:"Phlegm-Damp Accumulation · Blood Stagnation · Spleen Qi Deficiency",
+   tcm_detail:"Elevated cholesterol in TCM is understood as Phlegm-Damp and Blood stagnation — the Spleen's failure to properly transform and transport food leads to Phlegm-Damp accumulation in the vessels (correlating to lipid deposits). Blood stagnation develops alongside. Treatment: strengthen Spleen, resolve Phlegm-Damp, move Blood, clear the vessels. Hawthorn (Shan Zha) is the primary cardiovascular herb in TCM — moves food stagnation and Blood, benefits the Heart, reduces lipid accumulation. Garlic (Da Suan) resolves Phlegm-Damp and moves Blood. Oats strengthen the Spleen and resolve Damp.",
+   west_detail:"Western evidence: Garlic allicin reduces LDL by 10-15% and has anti-platelet activity. Oat beta-glucan is FDA-approved for cholesterol reduction claims. Hawthorn proanthocyanidins improve cardiac output and reduce lipid oxidation.",
+   herbs:["Hawthorn (山楂)","Garlic (大蒜)","Oats (燕麦)","Green Tea (绿茶)","Flaxseed (亚麻子)","Turmeric (姜黄)"],
+   how:"Daily: oats with ground flaxseed for breakfast. 2 raw garlic cloves in meals. Hawthorn tea or supplement. Green tea 2-3 cups. Hibiscus tea. Turmeric in all cooking. Reduce saturated fat, refined sugar, and processed food.",
+   dosage:[{n:"Oats",v:"Daily breakfast"},{n:"Garlic",v:"2 cloves/day"},{n:"Flaxseed",v:"2 tbsp ground"},{n:"Hawthorn",v:"Tea or supplement"}],
+   caution:"Do not stop cholesterol medication. Hawthorn interacts with heart medications — inform your GP. Garlic interacts with blood thinners."},
+
+  {id:21, name:"Weight Management", icon:"⚖️", cat:"Metabolic",
+   tcm_pattern:"Spleen Qi Deficiency · Phlegm-Damp Accumulation · Liver Qi Stagnation",
+   tcm_detail:"Weight gain and difficulty losing weight in TCM is primarily Spleen Qi deficiency with Phlegm-Damp — the Spleen fails to properly transform and transport water metabolism, leading to Damp accumulation in the tissues. Secondary patterns include Liver Qi stagnation (emotional eating, stress weight gain) and Kidney Yang deficiency (slow metabolism, cold constitution). Treatment: strengthen Spleen Yang, resolve Phlegm-Damp, course Liver Qi. Green tea (Lu Cha) is exceptional — it strengthens Spleen, resolves Damp, and clears Heat while boosting metabolism. Ginger warms Spleen Yang and dries Damp. Cinnamon warms Spleen and Kidney Yang.",
+   west_detail:"Western evidence: Green tea EGCG increases fat oxidation and metabolic rate in multiple RCTs. Ginger has thermogenic effects and reduces appetite in studies. ACV reduces postprandial glucose and increases satiety.",
+   herbs:["Green Tea (绿茶)","Ginger (干姜)","Cinnamon (肉桂)","Apple Cider Vinegar","Cayenne (辣椒粉)","Fennel (茴香)"],
+   how:"Morning: warm water + 1 tbsp ACV + pinch cayenne + lemon. Green tea throughout day. Cinnamon with every meal. Ginger tea 2 cups daily. Fennel tea between meals for appetite regulation. These support metabolism — dietary change is essential.",
+   dosage:[{n:"ACV",v:"1 tbsp diluted AM + before meals"},{n:"Green Tea",v:"3-4 cups/day"},{n:"Cinnamon",v:"½ tsp with food"},{n:"Ginger tea",v:"2 cups/day"}],
+   caution:"ACV must be diluted — undiluted damages tooth enamel. Significant weight concerns should involve your GP."},
+
+  {id:22, name:"Constipation", icon:"💩", cat:"Digestive",
+   tcm_pattern:"Intestinal Qi Stagnation · Dryness in Large Intestine · Heat in Stomach and Intestines · Spleen and Kidney Yang Deficiency",
+   tcm_detail:"Constipation in TCM has multiple patterns. Heat constipation (dry, hard stools, thirst, red face): cool and moisten the intestines. Qi stagnation constipation (difficulty passing despite soft stools, distension): move Qi. Cold-deficiency constipation (elderly, pale face, cold limbs): warm and tonify Yang. Dryness constipation (deficient Blood and Yin): nourish Blood and Yin, moisten intestines. Flaxseed (Ya Ma Zi) moistens the intestines and moves the bowels — appropriate for most patterns. Chia seeds form a lubricating gel. Dandelion root stimulates bile and bowel movement. Ginger warms Cold-type constipation.",
+   west_detail:"Western evidence: Flaxseed fibre and mucilage are clinically proven laxatives. Chia seeds absorb up to 12x their weight in water creating lubricating gel. Aloe vera inner leaf gel increases intestinal water content.",
+   herbs:["Flaxseed (亚麻子)","Chia Seeds (奇亚籽)","Dandelion (蒲公英)","Aloe Vera (芦荟)","Fennel (茴香)","Ginger (干姜)"],
+   how:"Hydration first — most constipation is dehydration. Morning: 2 tbsp ground flaxseed in warm water or 1 tbsp chia seeds soaked overnight. Dandelion root tea 2 cups daily. Fennel tea after meals. Ginger for cold-type. Aloe vera inner leaf juice (50ml).",
+   dosage:[{n:"Ground Flaxseed",v:"2 tbsp AM in warm water"},{n:"Chia Seeds",v:"1 tbsp soaked overnight"},{n:"Dandelion tea",v:"2 cups/day"},{n:"Aloe juice",v:"50ml inner leaf only"}],
+   caution:"Aloe latex (yellow sap) — harsh laxative, avoid. Inner leaf only. Chronic constipation should be medically investigated."},
+
+  {id:23, name:"Urinary Tract Support", icon:"💧", cat:"Kidney & Bladder",
+   tcm_pattern:"Damp-Heat in Bladder · Kidney Qi Deficiency · Heart Fire Moving to Small Intestine",
+   tcm_detail:"UTI symptoms in TCM are Damp-Heat pouring downward into the Bladder — the Lin Syndrome (painful, frequent urination). The Heart and Small Intestine are interiorly-exteriorly related; when Heart Fire is strong (from stress or Heat), it can transfer to the Small Intestine and then Bladder causing burning urination. Treatment: clear Heat, resolve Damp, promote urination, reduce inflammation. Nettle is a key herb — it is a potassium-sparing diuretic that flushes the Bladder without depleting minerals. Parsley strongly promotes urination. Celery seed clears Damp-Heat from the lower Jiao. Lemon alkalises the urine.",
+   west_detail:"Western evidence: Cranberry proanthocyanidins prevent E. coli adhesion to bladder wall in RCTs. Nettle has anti-inflammatory and diuretic effects clinically confirmed. D-mannose (in cranberry and other foods) prevents UTI recurrence as effectively as prophylactic antibiotics.",
+   herbs:["Nettle (荨麻)","Parsley (欧芹)","Celery Seed (芹菜子)","Lemon (柠檬)","Dandelion (蒲公英)","Coriander (香菜)"],
+   how:"Increase fluid intake significantly. Nettle tea 3 cups daily. Parsley tea 2 cups. Lemon water throughout day. Celery seed capsules for prevention. Avoid sugar, alcohol, and caffeine completely during a flare.",
+   dosage:[{n:"Nettle tea",v:"3 cups/day"},{n:"Parsley tea",v:"2 cups/day"},{n:"Lemon water",v:"Throughout day"},{n:"Celery seed",v:"As capsules"}],
+   caution:"Acute UTI with pain, fever, or blood in urine — see your GP immediately. These are preventive and supportive, not curative for active infection."},
+
+  {id:24, name:"Bone & Joint Health", icon:"🦴", cat:"Pain & Inflammation",
+   tcm_pattern:"Kidney Deficiency (Kidney Governs Bones) · Liver Blood Deficiency (Liver Governs Tendons) · Damp-Cold Bi Syndrome",
+   tcm_detail:"The health of bones and joints is governed primarily by the Kidney in TCM — the classical text states 'the Kidney stores Jing, Jing produces Marrow, Marrow nourishes Bone'. Kidney deficiency is therefore the root of most bone diseases including osteoporosis and chronic joint degeneration. The Liver governs the tendons and ligaments — Liver Blood deficiency weakens connective tissue and makes joints vulnerable to Bi syndrome. Treatment: tonify Kidney Jing and Liver Blood, strengthen the bones and tendons. Black Sesame (Hei Zhi Ma) is a premier Kidney and Liver Yin tonic with the highest plant calcium content.",
+   west_detail:"Western evidence: Sesame lignans and high calcium (more bioavailable than dairy in some studies) support bone density. Vitamin K in nettle and greens is essential for bone matrix protein osteocalcin. Rosehip GOPO has the strongest evidence for osteoarthritis.",
+   herbs:["Black Sesame (黑芝麻)","Nettle (荨麻)","Dark Leafy Greens","Rosehip (玫瑰果)","Oats (燕麦)","Turmeric (姜黄)"],
+   how:"Daily bone protocol: sesame seeds 2 tbsp (toast and add to food). Nettle tea 2 cups. Dark leafy greens daily — generous. Rosehip GOPO supplement. Turmeric for inflammation. Daily weight-bearing exercise.",
+   dosage:[{n:"Sesame seeds",v:"2 tbsp daily"},{n:"Nettle tea",v:"2 cups/day"},{n:"Rosehip (GOPO)",v:"Supplement"},{n:"Dark Greens",v:"Daily generous"}],
+   caution:"Sesame allergy — check first. Vitamin K in greens interacts with warfarin. Osteoporosis should be medically monitored."},
+
+  {id:25, name:"Prostate Health", icon:"🩺", cat:"Men's Health",
+   tcm_pattern:"Kidney Yang Deficiency · Damp-Heat in Lower Jiao · Blood Stagnation in Lower Jiao",
+   tcm_detail:"Prostate conditions in TCM fall under Lin syndrome (urinary difficulty) and involve the Kidney and Lower Jiao. Benign prostatic hyperplasia (BPH) typically involves Kidney Yang deficiency (reduced transformation of fluids in the lower Jiao) combined with Damp-Heat or Blood stagnation causing obstruction. Pumpkin seeds (Nan Gua Zi) are a specific TCM herb for Kidney and Lower Jiao support. Nettle root (not leaf) tonifies the Kidney Yang and clears Damp from the Lower Jiao. Saw palmetto (a Western herb with similar TCM properties to Kidney Yang tonics) reduces DHT.",
+   west_detail:"Western evidence: Pumpkin seed beta-sitosterol clinically comparable to finasteride for BPH symptoms in RCTs. Nettle root extract reduces SHBG and DHT. Pomegranate ellagic acid studied extensively for prostate cancer prevention.",
+   herbs:["Pumpkin Seeds (南瓜子)","Nettle (荨麻)","Green Tea (绿茶)","Pomegranate (石榴)","Turmeric (姜黄)","Walnuts (核桃仁)"],
+   how:"Daily: 30g raw pumpkin seeds (not salted). Green tea 3 cups. Pomegranate juice 150ml. Turmeric in all cooking. Walnuts as snack. Nettle root supplement (specifically root, not leaf).",
+   dosage:[{n:"Pumpkin seeds",v:"30g raw daily"},{n:"Green tea",v:"3 cups/day"},{n:"Pomegranate juice",v:"150ml/day"},{n:"Turmeric",v:"1 tsp daily in food"}],
+   caution:"Always get medical assessment for prostate symptoms first. Do not delay diagnosis. PSA testing is important."},
+
+  {id:26, name:"Adrenal Fatigue & Burnout", icon:"⚡", cat:"Vitality",
+   tcm_pattern:"Kidney Jing and Yang Depletion · Spleen Qi Collapse · Liver Qi Stagnation",
+   tcm_detail:"Burnout and adrenal fatigue in TCM represent severe Kidney Jing depletion — the deepest level of constitutional essence has been depleted by prolonged overwork, chronic stress, inadequate sleep, and poor nourishment. The classical text warns against 'exhausting the Jing' through excess. Simultaneously the Spleen collapses from sustained pressure and the Liver stagnates from frustration. This is a serious pattern requiring sustained 3-6 month treatment. Ashwagandha (closely parallels TCM Kidney Yang tonics), Holy Basil (Tulsi — courses Liver Qi and calms Shen), and Maca (tonifies Kidney Jing) are the key herbs. Rest is the primary treatment — no herb replaces sleep in rebuilding Kidney Jing.",
+   west_detail:"Western evidence: Ashwagandha withanolides reduce cortisol by 27% in RCTs and significantly improve fatigue, stress, and sleep. Holy Basil normalises cortisol rhythm in studies. Maca improves energy and libido through hypothalamic-pituitary axis modulation.",
+   herbs:["Ashwagandha (睡茄)","Holy Basil (圣罗勒)","Goji Berries (枸杞子)","Licorice Root (甘草)","Maca Root (玛卡)","Oats (燕麦)"],
+   how:"Long protocol — minimum 3 months: oat porridge every morning (Spleen Qi tonic). Holy basil tea throughout day. Ashwagandha and maca as evening supplements. Goji berries 15-20 daily. Licorice root tea (1 cup only). Sleep 8-9 hours — non-negotiable.",
+   dosage:[{n:"Holy Basil tea",v:"3 cups/day"},{n:"Ashwagandha",v:"Supplement — per label"},{n:"Goji Berries",v:"15-20 daily"},{n:"Oats",v:"Every morning"}],
+   caution:"Licorice root — avoid if hypertensive (raises blood pressure). Ashwagandha — avoid with autoimmune thyroid. True adrenal fatigue requires medical investigation."},
+
+  {id:27, name:"Hay Fever & Allergies", icon:"🌼", cat:"Immune",
+   tcm_pattern:"Wei Qi Deficiency · Lung Qi Deficiency · Wind Invasion · Spleen Deficiency Generating Damp",
+   tcm_detail:"Allergic rhinitis in TCM is primarily Wei Qi (defensive Qi) deficiency — the body's defensive barrier is too weak to prevent Wind and environmental pathogens from penetrating. The Lung opens to the nose and controls the skin and body hair — Lung Qi deficiency impairs this defensive function. Spleen Qi deficiency generates Phlegm-Damp which blocks the nasal passages. Treatment: strengthen Wei Qi and Lung Qi, consolidate the exterior, resolve Phlegm-Damp, expel Wind. Nettle (containing quercetin and anti-histamine compounds) expels Wind and clears Phlegm-Damp. Elderflower clears Wind-Heat from the upper respiratory tract and relieves nasal congestion.",
+   west_detail:"Western evidence: Freeze-dried nettle rated comparable to antihistamines for hay fever in one RCT. Quercetin (in onions, apples, capers) is a mast cell stabiliser — prevents histamine release. Butterbur Ze339 shown superior to cetirizine for hay fever in German trial.",
+   herbs:["Nettle (荨麻)","Elderflower (接骨木花)","Ginger (干姜)","Turmeric (姜黄)","Onion (洋葱)","Local Honey"],
+   how:"Start 6-8 weeks before hay fever season. Nettle tea (or freeze-dried capsules — most effective form). Elderflower tea during season. Quercetin foods daily: onions, apples. Ginger and turmeric reduce histamine response. Local raw honey 1 tsp daily for local pollen tolerance.",
+   dosage:[{n:"Freeze-dried Nettle",v:"Per capsule label"},{n:"Elderflower tea",v:"2 cups during season"},{n:"Quercetin foods",v:"Onions, apples daily"},{n:"Local honey",v:"1 tsp/day"}],
+   caution:"Nettle allergy possible — start small. Severe hay fever with asthma — use prescribed medication first. These are additional supportive measures."},
+
+  {id:28, name:"Thyroid Support (Underactive)", icon:"🦋", cat:"Metabolic",
+   tcm_pattern:"Kidney Yang Deficiency · Spleen Yang Deficiency · Phlegm-Damp Accumulation (Goitre)",
+   tcm_detail:"Hypothyroidism in TCM correlates closely to Kidney Yang deficiency — the deep warming Yang of the body is insufficient, leading to cold intolerance, weight gain, fatigue, slow pulse, and depression (all classic Kidney Yang deficiency signs). Spleen Yang deficiency develops alongside, impairing metabolism and causing Phlegm-Damp accumulation — which in the neck can cause goitre (Ying Zhong). Treatment: warm and tonify Kidney and Spleen Yang, transform Phlegm-Damp. Ginger and cinnamon warm Kidney Yang and transform Cold-Damp. Ashwagandha has specific evidence for improving thyroid hormone levels.",
+   west_detail:"Western evidence: Ashwagandha significantly increases T3 and T4 in sub-clinical hypothyroidism in RCTs. Selenium (in Brazil nuts — 2 daily) is essential for T4 to T3 conversion and thyroid peroxidase function.",
+   herbs:["Ashwagandha (睡茄)","Ginger (干姜)","Cinnamon (肉桂)","Nettle (荨麻)","Spirulina (螺旋藻)","Dark Leafy Greens"],
+   how:"Warming daily protocol: ginger-cinnamon tea 2 cups daily. Ashwagandha supplement — specific evidence for thyroid. Nettle tea for micronutrients. Spirulina 1 tsp for iodine. Cook all brassica vegetables — never raw if on thyroid medication.",
+   dosage:[{n:"Ginger-Cinnamon tea",v:"2 cups/day"},{n:"Ashwagandha",v:"Per product label"},{n:"Nettle tea",v:"2 cups/day"},{n:"Spirulina",v:"1 tsp/day"}],
+   caution:"NEVER stop thyroid medication. Ashwagandha can affect hormone levels — monitor with GP. Cruciferous vegetables must be cooked if on thyroid medication. Iodine — avoid excess."},
+
+  {id:29, name:"Hair Loss & Thinning", icon:"💇", cat:"Beauty & Hair",
+   tcm_pattern:"Kidney and Liver Blood Deficiency · Blood Heat · Qi and Blood Not Reaching the Scalp",
+   tcm_detail:"In TCM, the state of hair reflects the state of Kidney Jing and Liver Blood — the classical text states 'the Kidney manifests in the hair of the head'. Premature greying indicates Kidney Jing deficiency. Hair loss indicates Kidney and Liver Blood deficiency — insufficient Blood reaching the scalp to nourish the hair roots. Blood Heat can also cause hair loss as it damages the hair follicles. He Shou Wu (Fo-Ti) is the classical TCM hair tonic — deeply nourishes Kidney Jing and Liver Blood. Rosemary opens the channels and promotes Blood flow to the scalp. Black Sesame strongly nourishes Kidney and Liver Blood.",
+   west_detail:"Western evidence: Rosemary oil RCT showed comparable effectiveness to minoxidil for androgenic alopecia at 6 months with fewer side effects. Iron deficiency (common cause — tested via serum ferritin) causes diffuse hair loss. Biotin supplementation has limited evidence for non-deficient individuals.",
+   herbs:["Rosemary (迷迭香)","Black Sesame (黑芝麻)","Nettle (荨麻)","Goji Berries (枸杞子)","Dark Leafy Greens","Flaxseed (亚麻子)"],
+   how:"Internal: nettle tea daily, sesame seeds 2 tbsp daily, goji berries, dark greens for iron. External: Rosemary scalp oil — 3-4 drops rosemary essential oil in 2 tbsp carrier oil, massage into scalp for 5 mins, leave 20 mins or overnight, 3x weekly. This is supported by a proper RCT.",
+   dosage:[{n:"Rosemary scalp oil",v:"3x weekly massage"},{n:"Nettle tea",v:"2 cups/day"},{n:"Black Sesame",v:"2 tbsp/day"},{n:"Goji Berries",v:"15-20 daily"}],
+   caution:"He Shou Wu (Fo-Ti) — NOT recommended for self-prescription due to serious hepatotoxicity risk. Rosemary oil must always be diluted. Hair loss can indicate serious underlying conditions — investigate with GP."},
+
+  {id:30, name:"Type 2 Diabetes Support", icon:"🍬", cat:"Metabolic",
+   tcm_pattern:"Spleen Qi and Yin Deficiency · Stomach Heat Consuming Fluids · Kidney Yin Deficiency · Damp-Heat Accumulation",
+   tcm_detail:"Type 2 diabetes corresponds to Xiao Ke (wasting and thirsting disease) in classical TCM — described in the Huang Di Nei Jing 2,000 years ago with remarkable accuracy. The pattern typically progresses through three stages: Upper Jiao (Lung Heat, excessive thirst), Middle Jiao (Stomach Heat, excessive hunger, weight loss), and Lower Jiao (Kidney deficiency, excessive urination, wasting). Modern T2DM is primarily Middle Jiao Xiao Ke. Treatment: clear Stomach Heat, nourish Spleen and Stomach Yin, supplement Kidney. Ceylon cinnamon is the most well-evidenced single herb — it sensitises insulin receptors and reduces post-meal glucose by mechanisms similar to metformin.",
+   west_detail:"Western evidence: Ceylon cinnamon (not cassia) reduces fasting blood glucose by 18-29% and HbA1c in multiple RCTs. Berberine (in various plants) is as effective as metformin in head-to-head trials — used as a TCM herb for thousands of years. Fenugreek reduces postprandial glucose significantly.",
+   herbs:["Cinnamon (肉桂)","Fenugreek (葫芦巴)","Apple Cider Vinegar","Turmeric (姜黄)","Green Tea (绿茶)","Bitter Melon (苦瓜 — if available)"],
+   how:"Evidence-based daily protocol: Ceylon cinnamon ½ tsp with every meal. ACV 1 tbsp diluted before carbohydrate meals. Fenugreek soaked seeds morning. Green tea replaces all sugary drinks. Turmeric in all cooking. These have meaningful evidence but are SUPPORTIVE ONLY alongside medical treatment.",
+   dosage:[{n:"Ceylon Cinnamon",v:"½ tsp × 3 meals"},{n:"ACV",v:"1 tbsp before carb meals"},{n:"Fenugreek",v:"1 tsp soaked seeds AM"},{n:"Green Tea",v:"3+ cups/day"}],
+   caution:"CRITICAL: These herbs LOWER BLOOD SUGAR. Combined with diabetes medication they can cause hypoglycaemia. Inform your GP and diabetic nurse. Monitor blood glucose carefully. DO NOT reduce medication without medical supervision."},
+];
+
+const CATS = ['All','Digestive','Mind & Mood','Women\'s Health','Cardiovascular',
+  'Immune','Respiratory','Vitality','Pain & Inflammation','Metabolic',
+  'Detox & Cleanse','Skin','Kidney & Bladder','Men\'s Health','Beauty & Hair'];
+
+let activeCat = 'All';
+let openId = null;
+
+function buildCats() {
+  document.getElementById('fcats').innerHTML = CATS.map(c =>
+    `<div class="cat-btn${c===activeCat?' on':''}" onclick="setCat('${c}')">${c}</div>`
+  ).join('');
+}
+
+function setCat(c) {
+  activeCat = c;
+  openId = null;
+  buildCats();
+  renderFormulas();
+}
+
+function toggleCard(id) {
+  openId = openId === id ? null : id;
+  renderFormulas();
+  if (openId) {
+    setTimeout(() => {
+      const el = document.getElementById('fc'+id);
+      if (el) el.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }, 100);
+  }
+}
+
+function renderFormulas() {
+  const q = (document.getElementById('fsearch').value || '').toLowerCase();
+  const list = FORMULAS.filter(f => {
+    const matchCat = activeCat === 'All' || f.cat === activeCat;
+    const matchQ = !q ||
+      f.name.toLowerCase().includes(q) ||
+      f.herbs.some(h => h.toLowerCase().includes(q)) ||
+      f.tcm_pattern.toLowerCase().includes(q) ||
+      f.tcm_detail.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  const el = document.getElementById('flist');
+  if (!list.length) {
+    el.innerHTML = '<div class="no-res">No formulas found for this search.</div>';
+    return;
+  }
+
+  el.innerHTML = list.map(f => `
+    <div class="fcard${openId===f.id?' open':''}" id="fc${f.id}">
+      <div class="fcard-head" onclick="toggleCard(${f.id})">
+        <div class="fcard-icon">${f.icon}</div>
+        <div class="fcard-info">
+          <div class="fcard-name">${f.name}</div>
+          <div class="fcard-tcm-brief">☯ ${f.tcm_pattern.split('·')[0].trim()}</div>
+        </div>
+        <div class="fcard-arrow">▼</div>
+      </div>
+      <div class="fcard-body">
+
+        <div class="fs">
+          <div class="fs-label">☯ TCM Pattern</div>
+          <div class="fs-body" style="color:var(--goldl);font-weight:600;
+            margin-bottom:.35rem">${f.tcm_pattern}</div>
+        </div>
+
+        <div class="fs">
+          <div class="fs-label">☯ TCM Understanding</div>
+          <div class="fs-body-muted">${f.tcm_detail}</div>
+        </div>
+
+        <div class="fs">
+          <div class="fs-label">🔬 Western Science</div>
+          <div class="fs-body-muted">${f.west_detail}</div>
+        </div>
+
+        <div class="fs">
+          <div class="fs-label">🌿 Herbs</div>
+          <div class="herb-pills">
+            ${f.herbs.map(h => `<span class="herb-pill">${h}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="fs">
+          <div class="fs-label">📋 How to Use</div>
+          <div class="fs-body-muted">${f.how}</div>
+        </div>
+
+        <div class="fs">
+          <div class="fs-label">💊 Suggested Amounts</div>
+          <table class="dosage-table">
+            ${f.dosage.map(d =>
+              `<tr><td>${d.n}</td><td>${d.v}</td></tr>`
+            ).join('')}
+          </table>
+        </div>
+
+        <div class="caution-box">
+          <div class="caution-label">⚠ Caution</div>
+          <div class="caution-text">${f.caution}</div>
+        </div>
+
+        <div class="consult-cta">
+          <div class="consult-cta-text">
+            For personalised treatment using professional-grade Chinese herbal medicine
+            and acupuncture, consult Charles John BSc (Hons) directly.
+          </div>
+          <a href="/consult.html" class="consult-cta-btn">Free 15-min Assessment →</a>
+        </div>
+
+      </div>
+    </div>
+  `).join('');
+}
+
+buildCats();
+renderFormulas();
+</script>
+</body>
+</html>

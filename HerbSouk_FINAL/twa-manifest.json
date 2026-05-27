@@ -1,0 +1,42 @@
+{
+  "packageId": "com.herbsouk.app",
+  "host": "herbsouk.com",
+  "name": "The Herb Souk",
+  "launcherName": "Herb Souk",
+  "display": "standalone",
+  "orientation": "portrait",
+  "themeColor": "#c9943a",
+  "navigationColor": "#0a0600",
+  "navigationColorDark": "#0a0600",
+  "navigationDividerColor": "#c9943a",
+  "backgroundColor": "#0a0600",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://herbsouk.co.uk/icons/icon-512x512.png",
+  "maskableIconUrl": "https://herbsouk.co.uk/icons/icon-512x512.png",
+  "monochromeIconUrl": "https://herbsouk.co.uk/icons/icon-512x512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingMode": "mine",
+  "fingerprints": [],
+  "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": { "enabled": false },
+    "playBilling": { "enabled": true }
+  },
+  "alphaDependencies": { "enabled": false },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://herbsouk.co.uk/",
+  "minSdkVersion": 19,
+  "appVersionCode": 1,
+  "appVersionName": "1.0.0",
+  "shortcuts": [
+    {
+      "name": "Browse Herbs",
+      "short_name": "Browse",
+      "url": "/?shortcut=browse",
+      "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
+    }
+  ]
+}

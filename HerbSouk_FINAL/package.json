@@ -1,0 +1,8 @@
+{
+  "name": "herbsouk",
+  "version": "2.0.0",
+  "description": "The Herb Souk — dependency file for Netlify functions",
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}

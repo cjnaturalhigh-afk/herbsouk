@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buy The Herb Souk — £4.99</title>
+<meta name="description" content="Download The Herb Souk — 100 healing herbs, AI translation into 12 languages, TCM First Medicine meets Western science. One-off £4.99.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0600; --card: #1c1205; --card2: #251808;
+    --gold: #c9943a; --goldl: #e8c06a; --goldd: #9a6e22;
+    --green: #2d5a3d; --greenl: #4a8c5c;
+    --cream: #f5ead6; --txt: #f0e6d3; --muted: #9a8060;
+    --border: rgba(201,148,58,0.22); --border2: rgba(201,148,58,0.45);
+    --success: #1a7a4a; --error: #8b1a1a;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--txt);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh; -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(ellipse at 50% 0%, #2d1800 0%, transparent 60%);
+  }
+
+  /* ── HEADER ── */
+  header {
+    text-align: center; padding: 3rem 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 0.3rem; }
+  .brand-orn { font-size: 0.9rem; color: var(--gold); opacity: 0.6; letter-spacing: 0.4em; margin-bottom: 0.5rem; }
+  .header-sub { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: var(--cream); text-align: center;
+    line-height: 1.15; margin-bottom: 0.5rem;
+  }
+  .page-title em { font-style: italic; color: var(--gold); }
+  .page-sub { text-align: center; color: var(--muted); font-size: 0.95rem; margin-bottom: 2.5rem; }
+
+  .two-col { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; align-items: start; }
+
+  /* ── PRODUCT CARD ── */
+  .product-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .product-hero {
+    background: linear-gradient(135deg, #1c1205, #2d1a08);
+    padding: 2.5rem 2rem; text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .product-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(201,148,58,0.12), transparent 70%);
+  }
+  .product-icon { font-size: 3.5rem; display: block; margin-bottom: 1rem; position: relative; }
+  .product-name {
+    font-family: 'Playfair Display', serif; font-size: 1.6rem;
+    color: var(--cream); position: relative; margin-bottom: 0.3rem;
+  }
+  .product-tagline { font-size: 0.82rem; color: var(--gold); font-style: italic; position: relative; }
+  .price-display {
+    display: flex; align-items: baseline; justify-content: center;
+    gap: 0.4rem; margin-top: 1.2rem; position: relative;
+  }
+  .price-amount {
+    font-family: 'Playfair Display', serif; font-size: 3rem;
+    color: var(--gold); font-weight: 700; line-height: 1;
+  }
+  .price-label { font-size: 0.78rem; color: var(--muted); }
+  .price-note { font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 0.3rem; position: relative; }
+
+  .product-features { padding: 1.5rem; }
+  .feature { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 0.85rem; }
+  .feature:last-child { margin-bottom: 0; }
+  .feat-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+  .feat-text { font-size: 0.85rem; color: var(--txt); line-height: 1.5; }
+  .feat-text strong { color: var(--goldl); font-weight: 700; }
+  .divider { height: 1px; background: var(--border); margin: 1.2rem 0; }
+
+  /* ── PAYMENT FORM ── */
+  .payment-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 2rem;
+  }
+  .payment-title {
+    font-family: 'Playfair Display', serif; font-size: 1.25rem;
+    color: var(--cream); margin-bottom: 0.3rem;
+  }
+  .payment-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+  .form-group { margin-bottom: 1.2rem; }
+  .form-label {
+    display: block; font-size: 0.75rem; font-weight: 700;
+    color: var(--gold); text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 0.45rem;
+  }
+  .form-input {
+    width: 100%; background: var(--card2);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.75rem 1rem; color: var(--txt);
+    font-family: 'Nunito', sans-serif; font-size: 0.92rem;
+    outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-input::placeholder { color: var(--muted); }
+  .form-input:focus { border-color: var(--gold); }
+  .form-input.error { border-color: #c0392b; }
+
+  /* Stripe Elements container */
+  .stripe-field {
+    background: var(--card2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.75rem 1rem;
+    transition: border-color 0.2s; min-height: 44px;
+  }
+  .stripe-field.focused { border-color: var(--gold); }
+  .stripe-field.error-field { border-color: #c0392b; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+  .pay-btn {
+    width: 100%; padding: 1rem;
+    background: linear-gradient(135deg, var(--gold), var(--goldd));
+    color: #0a0600; border: none; border-radius: 10px;
+    font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: all 0.25s; margin-top: 0.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    box-shadow: 0 4px 20px rgba(201,148,58,0.3);
+  }
+  .pay-btn:hover:not(:disabled) {
+    transform: translateY(-2px); box-shadow: 0 6px 28px rgba(201,148,58,0.45);
+  }
+  .pay-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+  .pay-btn .spinner {
+    width: 18px; height: 18px; border: 2px solid rgba(10,6,0,0.3);
+    border-top-color: #0a0600; border-radius: 50%;
+    animation: spin 0.7s linear infinite; display: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .secure-note {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.4rem; margin-top: 0.85rem;
+    font-size: 0.72rem; color: var(--muted);
+  }
+  .secure-note::before { content: '🔒'; font-size: 0.78rem; }
+
+  .error-msg {
+    background: rgba(139,26,26,0.2); border: 1px solid rgba(192,57,43,0.4);
+    border-radius: 8px; padding: 0.65rem 0.85rem;
+    font-size: 0.82rem; color: #e8a0a0; margin-top: 0.75rem;
+    display: none;
+  }
+
+  /* ── SUCCESS STATE ── */
+  #success-screen {
+    display: none; text-align: center; padding: 3rem 2rem;
+  }
+  .success-icon { font-size: 4rem; margin-bottom: 1rem; }
+  .success-title {
+    font-family: 'Playfair Display', serif; font-size: 2rem;
+    color: var(--gold); margin-bottom: 0.75rem;
+  }
+  .success-body { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+  .download-btn {
+    display: inline-block; background: var(--green);
+    border: 1px solid var(--greenl); color: var(--cream);
+    padding: 0.85rem 2rem; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    transition: all 0.2s; margin-bottom: 0.75rem;
+  }
+  .download-btn:hover { background: #3a7a52; transform: translateY(-2px); }
+  .success-note { font-size: 0.78rem; color: var(--muted); }
+
+  /* ── TRUST BADGES ── */
+  .trust-row {
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 1rem; margin-top: 2rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .trust-badge {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .trust-badge span { font-size: 0.9rem; }
+
+  /* ── FOOTER ── */
+  .pay-footer {
+    text-align: center; padding: 1.5rem;
+    font-size: 0.75rem; color: var(--muted);
+    border-top: 1px solid var(--border); margin-top: 1rem;
+  }
+  .pay-footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    .two-col { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .container { padding: 1.5rem 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-orn">✦ ☽ ✦</div>
+  <div class="brand">🌿 The Herb Souk</div>
+  <div class="header-sub">First Medicine · Secure Checkout</div>
+</header>
+
+<div class="container">
+  <h1 class="page-title">Download <em>The Herb Souk</em></h1>
+  <p class="page-sub">One-off purchase · Instant access · No subscription ever</p>
+
+  <div id="checkout-screen">
+    <div class="two-col">
+
+      <!-- LEFT — Product Info -->
+      <div class="product-card">
+        <div class="product-hero">
+          <span class="product-icon">🌿</span>
+          <div class="product-name">The Herb Souk</div>
+          <div class="product-tagline">First Medicine — AI Global Edition</div>
+          <div class="price-display">
+            <div class="price-amount">£4.99</div>
+            <div class="price-label">one-off</div>
+          </div>
+          <div class="price-note">No subscription · No ads · Yours forever</div>
+        </div>
+        <div class="product-features">
+          <div class="feature">
+            <span class="feat-icon">🌍</span>
+            <div class="feat-text"><strong>AI translation into 12 languages</strong> — full herb content translated in real time by Claude AI</div>
+          </div>
+          <div class="feature">
+            <span class="feat-icon">🌿</span>
+            <div class="feat-text"><strong>100 healing herbs</strong> — every one available at your local supermarket worldwide</div>
+          </div>
+          <div class="feature">
+            <span class="feat-icon">☯</span>
+            <div class="feat-text"><strong>TCM First Medicine profiles</strong> — flavour, temperature, organ systems, classical indications</div>
+          </div>
+          <div class="feature">
+            <span class="feat-icon">🔬</span>
+            <div class="feat-text"><strong>Western clinical evidence</strong> — active compounds, mechanisms, research summaries</div>
+          </div>
+          <div class="feature">
+            <span class="feat-icon">📸</span>
+            <div class="feat-text"><strong>Photography</strong> — instant supermarket identification for every herb</div>
+          </div>
+          <div class="feature">
+            <span class="feat-icon">💰</span>
+            <div class="feat-text"><strong>Commercial applications</strong> — what products each herb is used in globally</div>
+          </div>
+          <div class="divider"></div>
+          <div class="feature">
+            <span class="feat-icon">🎓</span>
+            <div class="feat-text">By <strong>Charles John BSc (Hons) Acupuncture</strong> · PG Dip CHM · 26 years clinical practice · University of Westminster</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — Payment Form -->
+      <div>
+        <div class="payment-card" id="payment-card">
+          <div class="payment-title">Complete your purchase</div>
+          <div class="payment-sub">Secure payment · Instant access on completion</div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email address</label>
+            <input type="email" id="email" class="form-input"
+              placeholder="your@email.com"
+              autocomplete="email">
+            <div style="font-size:0.72rem;color:var(--muted);margin-top:0.3rem">
+              Your app access link will be sent here
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="name">Full name</label>
+            <input type="text" id="name" class="form-input"
+              placeholder="Your name"
+              autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Card details</label>
+            <div id="card-element" class="stripe-field"></div>
+          </div>
+
+          <div id="card-errors" class="error-msg"></div>
+
+          <button id="pay-btn" class="pay-btn" onclick="handlePayment()">
+            <div class="spinner" id="spinner"></div>
+            <span id="btn-text">🌿 Pay £4.99 — Download Now</span>
+          </button>
+
+          <div class="secure-note">
+            256-bit SSL encryption · Powered by Stripe · PCI DSS compliant
+          </div>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="trust-row">
+          <div class="trust-badge"><span>🔒</span> Secure checkout</div>
+          <div class="trust-badge"><span>⚡</span> Instant access</div>
+          <div class="trust-badge"><span>♾️</span> Yours forever</div>
+          <div class="trust-badge"><span>🌍</span> Works worldwide</div>
+        </div>
+
+        <!-- Consultation upsell -->
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-top:1rem;text-align:center">
+          <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:700">Also available</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--cream);margin-bottom:0.3rem">Personal TCM Consultation</div>
+          <div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.75rem">60-minute session with Charles John · Personalised herb protocol · £95</div>
+          <a href="mailto:charles@theherbsouk.co.uk?subject=Consultation Enquiry — The Herb Souk&body=Hello Charles,%0A%0AI would like to book a consultation.%0A%0AMy name:%0AMy main health concern:%0APreferred time:%0A%0AThank you"
+            style="display:inline-block;border:1px solid var(--border2);color:var(--goldl);padding:0.45rem 1.2rem;border-radius:20px;font-size:0.8rem;text-decoration:none;font-weight:700;transition:all 0.2s"
+            onmouseover="this.style.background='rgba(201,148,58,0.1)'"
+            onmouseout="this.style.background='transparent'">
+            Book a consultation →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS SCREEN -->
+  <div id="success-screen">
+    <div class="success-icon">🌿</div>
+    <div class="success-title">Welcome to First Medicine</div>
+    <p class="success-body">
+      Your purchase is confirmed. Check your email for your access link.<br>
+      The ancient pharmacy is now in your pocket.
+    </p>
+    <a href="https://herbsouk.co.uk" class="download-btn">🌿 Open The Herb Souk</a>
+    <div class="success-note">
+      Questions? Email <a href="mailto:charles@theherbsouk.co.uk" style="color:var(--gold)">charles@theherbsouk.co.uk</a>
+      or call <a href="tel:07449643310" style="color:var(--gold)">07449 643310</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="pay-footer">
+  © 2026 Charles John · The Herb Souk™ ·
+  <a href="https://herbsouk.co.uk/privacy.html">Privacy Policy</a> ·
+  <a href="mailto:charles@theherbsouk.co.uk">Support</a> ·
+  All prices include VAT where applicable
+</div>
+
+<script>
+// ── STRIPE INTEGRATION ─────────────────────────────────────────
+// IMPORTANT: Replace 'pk_test_REPLACE_WITH_YOUR_KEY' with your
+// actual Stripe publishable key from dashboard.stripe.com
+// Test key starts with: pk_test_
+// Live key starts with: pk_live_
+const STRIPE_KEY = 'pk_test_REPLACE_WITH_YOUR_PUBLISHABLE_KEY';
+const PRICE_ID   = 'price_REPLACE_WITH_YOUR_PRICE_ID'; // from Stripe dashboard
+
+let stripe, cardElement;
+
+function initStripe() {
+  if (STRIPE_KEY.includes('REPLACE')) {
+    document.getElementById('card-element').innerHTML =
+      '<div style="color:#e8a87c;font-size:0.82rem;padding:0.3rem 0">⚠ Add your Stripe publishable key to activate payments</div>';
+    return;
+  }
+  stripe = Stripe(STRIPE_KEY);
+  const elements = stripe.elements({
+    appearance: {
+      theme: 'night',
+      variables: {
+        colorPrimary: '#c9943a',
+        colorBackground: '#251808',
+        colorText: '#f0e6d3',
+        colorDanger: '#e87c7c',
+        fontFamily: 'Nunito, sans-serif',
+        borderRadius: '8px',
+      }
+    }
+  });
+  cardElement = elements.create('card', {
+    style: {
+      base: {
+        color: '#f0e6d3', fontFamily: 'Nunito, sans-serif',
+        fontSize: '15px', '::placeholder': { color: '#9a8060' }
+      }
+    }
+  });
+  cardElement.mount('#card-element');
+  cardElement.on('focus', () =>
+    document.getElementById('card-element').classList.add('focused'));
+  cardElement.on('blur', () =>
+    document.getElementById('card-element').classList.remove('focused'));
+  cardElement.on('change', e => {
+    const el = document.getElementById('card-errors');
+    if (e.error) {
+      el.textContent = e.error.message;
+      el.style.display = 'block';
+      document.getElementById('card-element').classList.add('error-field');
+    } else {
+      el.style.display = 'none';
+      document.getElementById('card-element').classList.remove('error-field');
+    }
+  });
+}
+
+function setLoading(loading) {
+  const btn = document.getElementById('pay-btn');
+  const spinner = document.getElementById('spinner');
+  const text = document.getElementById('btn-text');
+  btn.disabled = loading;
+  spinner.style.display = loading ? 'block' : 'none';
+  text.textContent = loading ? 'Processing...' : '🌿 Pay £4.99 — Download Now';
+}
+
+function showError(msg) {
+  const el = document.getElementById('card-errors');
+  el.textContent = msg;
+  el.style.display = 'block';
+  setLoading(false);
+}
+
+async function handlePayment() {
+  if (STRIPE_KEY.includes('REPLACE')) {
+    alert('Stripe key not configured. See setup instructions below the form.');
+    return;
+  }
+  const email = document.getElementById('email').value.trim();
+  const name = document.getElementById('name').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('email').classList.add('error');
+    showError('Please enter a valid email address.');
+    return;
+  }
+  if (!name) {
+    document.getElementById('name').classList.add('error');
+    showError('Please enter your name.');
+    return;
+  }
+  document.getElementById('email').classList.remove('error');
+  document.getElementById('name').classList.remove('error');
+  setLoading(true);
+  document.getElementById('card-errors').style.display = 'none';
+
+  // Option A: Stripe Payment Intents (requires backend)
+  // For simplest launch, use Stripe Payment Links instead (Option B below)
+  try {
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
+      billing_details: { name, email }
+    });
+    if (error) { showError(error.message); return; }
+
+    // Send to your backend / Netlify function
+    const response = await fetch('/.netlify/functions/create-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        paymentMethodId: paymentMethod.id,
+        email, name,
+        amount: 499, currency: 'gbp',
+        description: 'The Herb Souk — AI Global Edition'
+      })
+    });
+    const result = await response.json();
+    if (result.success) {
+      showSuccess(email);
+    } else {
+      showError(result.error || 'Payment failed. Please try again.');
+    }
+  } catch (e) {
+    showError('Connection error. Please check your internet and try again.');
+  }
+}
+
+function showSuccess(email) {
+  document.getElementById('checkout-screen').style.display = 'none';
+  document.getElementById('success-screen').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Input cleanup
+['email','name'].forEach(id => {
+  document.getElementById(id).addEventListener('input', function() {
+    this.classList.remove('error');
+    document.getElementById('card-errors').style.display = 'none';
+  });
+});
+
+document.addEventListener('DOMContentLoaded', initStripe);
+</script>
+</body>
+</html>

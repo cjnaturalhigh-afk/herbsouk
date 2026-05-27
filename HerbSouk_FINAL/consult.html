@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Consultation — The Herb Souk™</title>
+<meta name="theme-color" content="#c9943a">
+<link rel="manifest" href="/manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f0900;--card:#1c1205;--gold:#c9943a;--goldl:#e8c06a;--green:#2d5a3d;--greenl:#4a8c5c;--cream:#f5ead6;--txt:#f0e6d3;--muted:#a89070;--border:rgba(201,148,58,0.25)}
+body{background:var(--bg);font-family:"Nunito",sans-serif;color:var(--txt);-webkit-font-smoothing:antialiased}
+.topbar{background:linear-gradient(135deg,#120900,#1f1100);border-bottom:1px solid var(--border);padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem;position:sticky;top:0;z-index:100}
+.back{background:rgba(0,0,0,.3);border:none;color:var(--cream);font-size:1.1rem;width:32px;height:32px;border-radius:50%;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center}
+.topbar h1{font-family:"Playfair Display",serif;font-size:1.2rem;color:var(--gold)}
+.body{padding:1.5rem 1rem;max-width:500px;margin:0 auto;padding-bottom:3rem}
+.hero{text-align:center;padding:2rem 0 1.5rem}
+.orn{font-size:1rem;color:var(--gold);letter-spacing:.4em;opacity:.8;margin-bottom:.6rem}
+.hero h2{font-family:"Playfair Display",serif;font-size:1.8rem;color:var(--cream);margin-bottom:.4rem}
+.hero p{font-size:.86rem;color:var(--muted);line-height:1.75}
+.methods{display:grid;gap:.9rem;margin:1.5rem 0}
+.method{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.1rem;display:flex;align-items:center;gap:.9rem;text-decoration:none;transition:all .2s}
+.method:hover{border-color:var(--gold);transform:translateY(-2px)}
+.mi{font-size:1.9rem;flex-shrink:0}
+.ml{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.mv{font-size:.95rem;color:var(--cream);font-weight:600;font-family:"Playfair Display",serif;margin-top:2px}
+.ms{font-size:.76rem;color:var(--muted);margin-top:2px}
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;margin:1.5rem 0}
+.form-title{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--gold);margin-bottom:1rem}
+.field{margin-bottom:.85rem}
+.field label{display:block;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.28rem}
+.field input,.field select,.field textarea{width:100%;background:#0f0900;border:1px solid var(--border);border-radius:8px;padding:.52rem .8rem;color:var(--txt);font-family:"Nunito",sans-serif;font-size:.86rem;outline:none;-webkit-appearance:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field textarea{min-height:85px;resize:vertical}
+.field select option{background:#1c1205;color:var(--txt)}
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--gold),#9a6520);color:#0f0900;border:none;border-radius:25px;padding:.85rem;font-size:.95rem;font-weight:700;cursor:pointer;font-family:"Nunito",sans-serif;transition:all .2s}
+.submit-btn:hover{transform:translateY(-2px)}
+.pricing-section{margin:1.5rem 0}
+.pricing-title{font-family:"Playfair Display",serif;font-size:1.05rem;color:var(--gold);margin-bottom:.8rem}
+.price-card-row{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.75rem .9rem;margin-bottom:.55rem;display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
+.pcr-left{flex:1}
+.pcr-name{font-size:.88rem;color:var(--cream);font-weight:600}
+.pcr-desc{font-size:.74rem;color:var(--muted);margin-top:2px;line-height:1.5}
+.pcr-price{font-family:"Playfair Display",serif;font-size:1.15rem;color:var(--gold);font-weight:700;white-space:nowrap;flex-shrink:0}
+.herbal-note{background:rgba(139,69,19,.15);border:1px solid rgba(201,148,58,.3);border-radius:10px;padding:.85rem;margin:.75rem 0;font-size:.78rem;color:#e8c06a;line-height:1.7}
+.programme-note{background:rgba(45,90,61,.15);border:1px solid rgba(74,140,92,.3);border-radius:10px;padding:.85rem;margin:.75rem 0;font-size:.78rem;color:#7ecfa0;line-height:1.7}
+.success{display:none;text-align:center;padding:2rem;background:rgba(45,90,61,.2);border:1px solid var(--greenl);border-radius:14px;margin-top:1rem}
+.success h3{font-family:"Playfair Display",serif;color:var(--greenl);font-size:1.3rem;margin-bottom:.5rem}
+.success p{font-size:.86rem;color:var(--muted);line-height:1.7}
+.copy-footer{text-align:center;padding:1.5rem 1rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);line-height:1.8}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="/app.html" class="back">←</a>
+  <h1>🌿 Book a Consultation</h1>
+</div>
+<div class="body">
+  <!-- ══ PURCHASE THE APP ════════════════════════════════════ -->
+  <div style="background:linear-gradient(135deg,#1c1205,#2a1808);border:1px solid rgba(201,148,58,.45);border-radius:16px;padding:1.4rem;margin-bottom:1.5rem;text-align:center">
+    <div style="font-size:.7rem;color:#a89070;text-transform:uppercase;letter-spacing:.15em;margin-bottom:.5rem">Purchase The Herb Souk™</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.5rem;color:#f5ead6;margin-bottom:.3rem">Unlock All 100 Herbs</div>
+    <div style="font-family:'Playfair Display',serif;font-size:2.2rem;color:#c9943a;font-weight:700;margin:.4rem 0 .2rem">£4.99</div>
+    <div style="font-size:.75rem;color:#a89070;margin-bottom:1rem">One-off · Personal licence · Non-transferable</div>
+    <a href="mailto:hello@theherbsouk.co.uk?subject=The Herb Souk — Purchase £4.99&body=Hello Charles,%0A%0AI would like to purchase The Herb Souk app for £4.99.%0A%0AName:%0AEmail for unlock code:%0A%0AThank you" 
+       style="display:block;background:linear-gradient(135deg,#c9943a,#9a6520);color:#0f0900;border-radius:25px;padding:.85rem;font-size:.95rem;font-weight:700;text-decoration:none;margin-bottom:.6rem;font-family:Nunito,sans-serif">
+      Purchase Now — Email Charles ↗
+    </a>
+    <div style="font-size:.72rem;color:#a89070;line-height:1.6">
+      Email your purchase request · Charles will reply with your personal unlock code within 24 hours · Enter the code in the app to unlock all 100 herbs permanently
+    </div>
+  </div>
+
+
+  <div class="hero">
+    <div class="orn">✦ ☽ ✦</div>
+    <h2>Speak with Charles John</h2>
+    <p>BSc (Hons) Acupuncture · PG Dip CHM · 26 years clinical practice.<br>
+    Specialist in fertility, PCOS, IVF support, recurrent miscarriage, and women's health.<br>
+    UK-wide via video, phone, or in-person home visits.</p>
+  </div>
+
+  <div class="methods">
+    <a href="mailto:consult@theherbsouk.co.uk?subject=Consultation Enquiry — The Herb Souk&body=Hello Charles,%0A%0AI would like to book a consultation.%0A%0AMy name:%0AMy main health concern:%0APreferred contact time:%0A%0AThank you" class="method">
+      <div class="mi">✉️</div>
+      <div>
+        <div class="ml">Email Charles directly</div>
+        <div class="mv">consult@theherbsouk.co.uk</div>
+        <div class="ms">Response within 24 hours</div>
+      </div>
+    </a>
+    <a href="tel:07449643310" class="method">
+      <div class="mi">📞</div>
+      <div>
+        <div class="ml">Call or WhatsApp</div>
+        <div class="mv">07449 643310</div>
+        <div class="ms">Mon–Fri · 9am–6pm UK time</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="form-card">
+    <div class="form-title">Send an Enquiry</div>
+    <form id="consult-form" onsubmit="submitForm(event)">
+      <div class="field">
+        <label>Your Name</label>
+        <input type="text" id="name" placeholder="Full name" required>
+      </div>
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="your@email.com" required>
+      </div>
+      <div class="field">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="+44 ...">
+      </div>
+      <div class="field">
+        <label>Main Health Concern</label>
+        <select id="concern" required>
+          <option value="">Select your concern...</option>
+          <option>Fertility / Trying to Conceive</option>
+          <option>PCOS</option>
+          <option>Recurrent Miscarriage</option>
+          <option>IVF Support</option>
+          <option>Endometriosis</option>
+          <option>Irregular Periods / Hormonal Imbalance</option>
+          <option>Menopause</option>
+          <option>Digestive Health</option>
+          <option>Stress / Anxiety / Sleep</option>
+          <option>Immune Support</option>
+          <option>Chronic Pain / Arthritis</option>
+          <option>General Wellbeing / TCM Consultation</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Preferred Format</label>
+        <select id="format">
+          <option>Video consultation (Zoom/Teams)</option>
+          <option>Phone consultation</option>
+          <option>Home visit — acupuncture (London/Surrey)</option>
+          <option>Not sure — please advise</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Additional Information</label>
+        <textarea id="message" placeholder="Tell Charles about your situation, how long you have been experiencing this, and any previous treatments..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Enquiry ↗</button>
+    </form>
+    <div class="success" id="success">
+      <h3>✦ Enquiry Sent</h3>
+      <p>Thank you. Charles will be in touch within 24 hours to discuss your consultation.</p>
+    </div>
+  </div>
+
+  <div class="pricing-section">
+    <div class="pricing-title">Consultation & Treatment Fees</div>
+
+    <div class="price-card-row">
+      <div class="pcr-left">
+        <div class="pcr-name">Initial Consultation</div>
+        <div class="pcr-desc">Remote (video or phone) · Full TCM assessment, diagnosis, and treatment plan</div>
+      </div>
+      <div class="pcr-price">£75</div>
+    </div>
+
+    <div class="price-card-row">
+      <div class="pcr-left">
+        <div class="pcr-name">Remote Follow-Up</div>
+        <div class="pcr-desc">Video or phone · Progress review and treatment adjustment</div>
+      </div>
+      <div class="pcr-price">£95</div>
+    </div>
+
+    <div class="price-card-row">
+      <div class="pcr-left">
+        <div class="pcr-name">Home Acupuncture</div>
+        <div class="pcr-desc">In-person home visit · London and Surrey</div>
+      </div>
+      <div class="pcr-price">£150</div>
+    </div>
+
+    <div class="price-card-row">
+      <div class="pcr-left">
+        <div class="pcr-name">Acupuncture + Herbal Review</div>
+        <div class="pcr-desc">Combined session · Herbal prescriptions billed separately at cost</div>
+      </div>
+      <div class="pcr-price">£195</div>
+    </div>
+
+    <div class="herbal-note">
+      ⚗️ <strong>Chinese Herbal Medicine Prescriptions</strong><br>
+      All herbal prescriptions are individually formulated to your specific TCM pattern diagnosis and are billed separately at cost. They are not included in any consultation, review, or programme fee. Chinese herbal formulae vary in cost depending on the herbs prescribed, the form (raw, powder, tablet), and the duration of treatment. Your practitioner will provide a full cost estimate before prescribing.
+    </div>
+
+    <div class="price-card-row">
+      <div class="pcr-left">
+        <div class="pcr-name">IVF Support Programme</div>
+        <div class="pcr-desc">12 sessions minimum starting point · Ongoing as required</div>
+      </div>
+      <div class="pcr-price">£1,650</div>
+    </div>
+
+    <div class="price-card-row">
+      <div class="pcr-left">
+        <div class="pcr-name">PCOS Programme</div>
+        <div class="pcr-desc">12 sessions minimum starting point · Ongoing as required</div>
+      </div>
+      <div class="pcr-price">£850</div>
+    </div>
+
+    <div class="price-card-row">
+      <div class="pcr-left">
+        <div class="pcr-name">Miscarriage Recovery</div>
+        <div class="pcr-desc">12 sessions minimum starting point · Ongoing as required</div>
+      </div>
+      <div class="pcr-price">£1,100</div>
+    </div>
+
+    <div class="programme-note">
+      ☯ <strong>A note on chronic conditions and treatment duration</strong><br>
+      Traditional Chinese Medicine treats the root cause — the ben — of chronic conditions such as PCOS, recurrent miscarriage, endometriosis, and fertility challenges. Because we are addressing underlying patterns rather than suppressing symptoms, meaningful clinical change takes time.<br><br>
+      All programmes begin with a minimum of 12 sessions as a clinical foundation. The number of sessions required beyond this varies significantly between individuals and cannot be predetermined at the outset. Progress is reviewed continuously and your practitioner will advise you honestly at each stage. There are no fixed resolution timeframes for chronic conditions — only a commitment to genuine, root-cause treatment.
+    </div>
+  </div>
+
+  <div class="copy-footer">
+    The Herb Souk™ · First Medicine™ · © 2026 Charles John · All rights reserved<br>
+    Founder, The Herb Souk™ · <a href="mailto:consult@theherbsouk.co.uk" style="color:var(--gold)">consult@theherbsouk.co.uk</a> · 07449 643310
+  </div>
+</div>
+<script>
+function submitForm(e){
+  e.preventDefault();
+  const n=document.getElementById("name").value;
+  const em=document.getElementById("email").value;
+  const cn=document.getElementById("concern").value;
+  const fm=document.getElementById("format").value;
+  const mg=document.getElementById("message").value;
+  const sub=encodeURIComponent("Consultation Enquiry — The Herb Souk — "+cn);
+  const bod=encodeURIComponent("Hello Charles,\n\nI would like to book a consultation.\n\nName: "+n+"\nEmail: "+em+"\nConcern: "+cn+"\nPreferred Format: "+fm+"\n\n"+mg+"\n\nThank you");
+  window.location.href="mailto:consult@theherbsouk.co.uk?subject="+sub+"&body="+bod;
+  document.getElementById("consult-form").style.display="none";
+  document.getElementById("success").style.display="block";
+}
+</script>
+</body>
+</html>

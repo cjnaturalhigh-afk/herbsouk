@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Herb Souk™ — QR Code</title>
+<meta name="theme-color" content="#c9943a">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f0900;--gold:#c9943a;--goldl:#e8c06a;--cream:#f5ead6;--muted:#a89070;--border:rgba(201,148,58,0.25);--card:#1c1205}
+body{background:var(--bg);font-family:"Nunito",sans-serif;color:var(--cream);min-height:100vh;padding-bottom:3rem}
+.topbar{background:linear-gradient(135deg,#120900,#1f1100);border-bottom:1px solid var(--border);padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem;position:sticky;top:0;z-index:100}
+.back{background:rgba(0,0,0,.3);border:none;color:var(--cream);font-size:1.1rem;width:32px;height:32px;border-radius:50%;text-decoration:none;display:flex;align-items:center;justify-content:center}
+.topbar h1{font-family:"Playfair Display",serif;font-size:1.2rem;color:var(--gold)}
+.body{padding:1.5rem 1rem;max-width:440px;margin:0 auto}
+.hero{text-align:center;padding:1.5rem 0 1rem}
+.orn{font-size:1rem;color:var(--gold);letter-spacing:.4em;opacity:.8;margin-bottom:.6rem}
+.hero h2{font-family:"Playfair Display",serif;font-size:1.8rem;color:var(--cream);margin-bottom:.3rem}
+.hero p{font-size:.82rem;color:var(--muted);line-height:1.7}
+.qr-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;text-align:center;margin-bottom:1.2rem}
+#qr-wrap{display:inline-block;padding:16px;background:#ffffff;border-radius:8px;margin-bottom:.8rem}
+.url-tag{font-family:"Playfair Display",serif;font-size:.95rem;color:var(--goldl);margin-bottom:1rem}
+.scheme-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.sb{background:rgba(201,148,58,.12);border:1px solid var(--border);border-radius:20px;color:var(--muted);font-size:.75rem;font-weight:700;padding:.35rem .85rem;cursor:pointer;font-family:"Nunito",sans-serif;transition:all .2s}
+.sb.on,.sb:hover{background:rgba(201,148,58,.3);border-color:var(--gold);color:var(--goldl)}
+.dl-btn{background:linear-gradient(135deg,var(--gold),#9a6520);color:#0f0900;border:none;border-radius:25px;padding:.65rem 1.8rem;font-size:.88rem;font-weight:700;cursor:pointer;font-family:"Nunito",sans-serif;transition:all .2s}
+.dl-btn:hover{transform:translateY(-2px)}
+.status{font-size:.72rem;color:var(--muted);margin-top:.5rem;min-height:18px;text-align:center}
+.uses{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem}
+.uses h3{font-family:"Playfair Display",serif;font-size:.95rem;color:var(--gold);margin-bottom:.6rem}
+.uses ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.2rem}
+.uses li{font-size:.78rem;color:var(--muted);padding:.2rem 0 .2rem .6rem;position:relative}
+.uses li::before{content:"✦";font-size:.5rem;color:var(--gold);position:absolute;left:0;top:.35rem}
+.copy-footer{text-align:center;padding:1.5rem 1rem;font-size:.62rem;color:var(--muted);border-top:1px solid var(--border);line-height:1.8;margin-top:1.5rem}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="/index.html" class="back">←</a>
+  <h1>🌿 QR Code</h1>
+</div>
+<div class="body">
+  <div class="hero">
+    <div class="orn">✦ ☽ ✦</div>
+    <h2>Scan to Download</h2>
+    <p>Share The Herb Souk™ with a single scan.<br>Three colour variants · 600px download for print.</p>
+  </div>
+  <div class="qr-card">
+    <div id="qr-wrap"></div>
+    <div class="url-tag">herbsouk.com</div>
+    <div class="scheme-row">
+      <button class="sb on" onclick="setScheme('bw',this)">Black &amp; White</button>
+      <button class="sb" onclick="setScheme('cream',this)">Cream on Dark</button>
+      <button class="sb" onclick="setScheme('gold',this)">Gold on Dark</button>
+    </div>
+    <button class="dl-btn" onclick="download()">↓ Download PNG (600px)</button>
+    <div class="status" id="st"></div>
+  </div>
+  <div class="uses">
+    <h3>Where to use your QR code</h3>
+    <ul>
+      <li>Business cards</li>
+      <li>Email signature</li>
+      <li>Instagram &amp; LinkedIn</li>
+      <li>Consultation leaflets</li>
+      <li>Prescription bags</li>
+      <li>Events &amp; wellness fairs</li>
+      <li>Practice handouts</li>
+      <li>Website &amp; landing page</li>
+    </ul>
+  </div>
+  <div class="copy-footer">
+    The Herb Souk™ · First Medicine™ · © 2026 Charles John · All rights reserved<br>
+    Founder, The Herb Souk™ · <a href="mailto:cjnaturalhigh@msn.com" style="color:var(--gold)">cjnaturalhigh@msn.com</a>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const TARGET="https://herbsouk.co.uk";
+const SCHEMES={
+  bw:{dark:"#000000",light:"#ffffff",bg:"#ffffff"},
+  cream:{dark:"#1A0F00",light:"#F5EAD6",bg:"#F5EAD6"},
+  gold:{dark:"#C9943A",light:"#0F0900",bg:"#0F0900"}
+};
+let cur="bw";
+
+function buildQR(key){
+  cur=key;
+  const s=SCHEMES[key];
+  const wrap=document.getElementById("qr-wrap");
+  wrap.style.background=s.bg;
+  wrap.innerHTML="";
+  new QRCode(wrap,{text:TARGET,width:240,height:240,colorDark:s.dark,colorLight:s.light,correctLevel:QRCode.CorrectLevel.M});
+}
+
+function setScheme(key,btn){
+  document.querySelectorAll(".sb").forEach(b=>b.classList.remove("on"));
+  btn.classList.add("on");
+  buildQR(key);
+}
+
+function download(){
+  const wrap=document.getElementById("qr-wrap");
+  const img=wrap.querySelector("img")||wrap.querySelector("canvas");
+  if(!img){document.getElementById("st").textContent="Please wait a moment then try again";return;}
+  const size=600,pad=36,cv=document.createElement("canvas");
+  cv.width=size;cv.height=size;
+  const ctx=cv.getContext("2d");
+  ctx.fillStyle=SCHEMES[cur].bg;
+  ctx.fillRect(0,0,size,size);
+  ctx.drawImage(img,pad,pad,size-pad*2,size-pad*2);
+  const a=document.createElement("a");
+  a.download="herbsouk-qr-"+cur+".png";
+  a.href=cv.toDataURL("image/png");
+  a.click();
+  document.getElementById("st").textContent="Downloaded — 600×600px";
+  setTimeout(()=>document.getElementById("st").textContent="",3000);
+}
+
+window.addEventListener("load",()=>buildQR("bw"));
+</script>
+</body>
+</html>
