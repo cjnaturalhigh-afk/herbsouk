@@ -1,2 +1,5 @@
-[build]
-  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/herbsouk_v13.html.html"
+  status = 200
